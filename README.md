@@ -17,8 +17,9 @@ During this one week course you will learn state-of-the-art bioinformatic approa
 We will cover both read- and assembly-based methods, focusing on the strength of each of these methods depending on the research question.
 We will use data from both short- (e.g. Illumina) and long-read (e.g. Nanopore/PacBio) sequencing platforms, as it improves dramatically MAG assembling and binning compared to short-read-only methods.
 
-## Prerequisites
-We assume some basic awareness of analysis of UNIX and molecular biology.
+## Pre-requisites
+We assume some basic awareness of analysis of UNIX and molecular biology.  
+Please follow the exercises [here](command-line-basics.md) to refresh your Unix skills if needed.  
 
 ## Outcomes
 By completing this course, you will:
@@ -28,3 +29,9 @@ By completing this course, you will:
 - Have an up-to-date knowledge on the bioinformatic tools and best practices for the analysis of metagenomes
 - Be able to choose the right tools and approaches to answer your specific research question
 - Have confidence to learn new methods needed to answer your research question
+
+---
+
+[**-- SCHEDULE --**](schedule.md)  
+
+[**-- EXERCISES --**](exercises.md)

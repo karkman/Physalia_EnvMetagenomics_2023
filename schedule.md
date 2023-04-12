@@ -4,9 +4,9 @@
 
 |Time     |Activity|Link|
 |---------|--------|----|
-| ~ 1.5 h | Lecture: __Introduction to metagenomics__ | [Video](https://www.youtube.com/watch?v=RjNdHGK4ruo)|
+| ~ 1.5 h | Lecture: __Reconstructing genomes from metagenomes: key concepts__ | [Video](https://www.youtube.com/watch?v=RjNdHGK4ruo)|
 | ~ 2 h  | Review article: __Shotgun metagenomics, from sampling to analysis__ | [PDF](Lectures/nbt.3935.pdf)|
-| ~ 1 h | Recap on Unix | [Hands-on](command-line-basics.md)|
+| ~ 1 h | In case needed: __Recap on Unix__ | [Hands-on](command-line-basics.md)|
 
 ## Monday 17.04.23
 

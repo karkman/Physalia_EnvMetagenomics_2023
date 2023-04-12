@@ -1,8 +1,16 @@
 # Schedule
 
-## Monday 17.04.23
+## Before the course
 
 |Time     |Activity|Link|
+|---------|--------|----|
+| ~ 1.5 h | Introduction to metagenomics - lecture | [Video](https://www.youtube.com/watch?v=RjNdHGK4ruo)|
+| ~ 2 h  | Review article: __Shotgun metagenomics, from sampling to analysis__ | [Article](https://doi.org/10.1038/nbt.3935)|
+| ~ 1 h | Recap on Unix | [Hands-on](command-line-basics.md)|
+
+## Monday 17.04.23
+
+|Time     |Activity|Lik|
 |---------|--------|----|
 |Morning  |Course outline and practical info|[Slides](Lectures/course-outline-and-practical-info.pdf)|
 |Morning  |Introduction to metagenomics|[Slides](Lectures/introduction-to-metagenomics.pdf)|

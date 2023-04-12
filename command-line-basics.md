@@ -3,12 +3,10 @@
 Most of our activities will be done using the Unix command line (*aka*, the Unix shell).  
 It is thus highly recommend to have at least a basic grasp of how to get around in the Unix shell.  
 We have put together some resources to refresh your Unix skills.  
-Following the [basic tutorial #1](#basic-tutorial-1) is ~~mandatory~~ highly recommended.  
 
 - [Basic tutorial #1](#basic-tutorial-1)
 - [Basic tutorial #2](#basic-tutorial-2)
 - [Command challenge](#command-challenge)
-- [YouTube videos](#youtube-videos)
 
 ## Basic tutorial #1
 
@@ -249,7 +247,3 @@ What happened to `myfolder`?
 ## Command challenge
 
 [cmdchallenge.com](http://cmdchallenge.com)
-
-## YouTube videos
-
-- [youtube.com/watch?v=IrDUcdpPmdI](http://youtube.com/watch?v=IrDUcdpPmdI)

@@ -74,4 +74,11 @@ cd ..
 
 ## Basic QC of sequencing data
 
+The first thing to do is to copy the sequence data to your own folder.
+
+```bash
+cd Physalia_EnvMetagenomics_2023
+cp /home/Share/Data/STUDY/*.fastq.gz 01_DATA/
+```
+
 ## Read-based taxonomic profiling

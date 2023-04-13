@@ -69,6 +69,8 @@ cd ~/Physalia_EnvMetagenomics_2023
 git pull
 ```
 
+All exercises will be executed inside the course repository folder (`Physalia_EnvMetagenomics_2023`) that you cloned to your own home folder.
+
 ## Getting the raw data
 
 Choose which data set you would like to analyse on the course (`Tundra` or `WWTP`).  

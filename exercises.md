@@ -71,9 +71,9 @@ git pull
 
 ## Getting the raw data
 
-Choose whhich data set you would like to analyse on the course (`Tundra` or `WWTP`).  
+Choose which data set you would like to analyse on the course (`Tundra` or `WWTP`).  
 Copy the raw sequence data to your own `01_DATA` folder.  
-Before copying, uncomment (remove `#`) the study you chose.
+Before copying, uncomment the study you chose (remove `#`).
 
 ```bash
 #STUDY="WWTP"

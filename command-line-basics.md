@@ -13,7 +13,7 @@ We have put together some resources to refresh your Unix skills.
 ### Before starting
 
 **Windows users:** Open this [online Linux terminal](https://bellard.org/jslinux/vm.html?url=alpine-x86.cfg&mem=192) in a new window.  
-**MacOS/Linux users:** Launch the Terminal app on your machine.  
+**MacOS/Linux users:** Launch the `Terminal` app on your machine.  
 
 **Please note:**  
 
@@ -24,23 +24,32 @@ We have put together some resources to refresh your Unix skills.
 > cd unix_shell
 > ```
 > 
-> ...represent commands you need to type in.  Each line is a command. Commands have to be typed in a single line, one at a time. After each command, hit “Enter” to execute it.  
+> ...represent commands you need to type in.  
+> Each line is a command.  
+> Commands have to be typed in a single line, one at a time.  
+> After each command, hit the `Enter/Return` key to execute it.  
 > 
-> Things starting with a pound sign (or hashtag)...  
+> Things starting with a pound/hashtag sign (`#`)...  
 > 
 > ```bash
 > # This is a comment and is ignored by the shell
 > ```
 > 
-> ...represent comments embedded in the code to give instructions to the user. Anything in a line starting with a `#` is ignored by the shell. You can type it if you want, but nothing will happen (provided you start with a `#`).  
+> ...represent comments embedded in the code to give instructions to the user, make notes about the code, etc.  
+> Anything in a line starting with a `#` is ignored by the shell.  
 > 
-> We will be using different commands with different syntaxes. Different commands expect different types of arguments. Some times the order matters, some times it doesn't. If you are unsure, the best way to check how to run a command is by taking a look at its manual with the command `man`. For example, if you want to look at the manual for the command `mkdir` you can do:  
+> We will be using different commands with different syntaxes.  
+> Different commands expect different types of flags and arguments.  
+> Some times the order matters, some times it doesn't.  
+> If you are unsure, the best way to check how to run a command is by taking a look at its manual with the command `man`.  
+> For example, if you want to look at the manual for the command `mkdir` you can do:  
 > 
 > ```bash
 > man mkdir
 > 
-> # You can scroll down by hitting the space bar
-> # To quit, hit "q"
+> # You can scroll down by hitting the space bar or pressing ctrl+f
+> # Press ctrl+b to scroll up
+> # To quit, press q
 > ```
 
 ### Creating and navigating directories
@@ -103,8 +112,8 @@ Now inside the `nano` screen:
 
 1. Write some text  
 2. Exit with `ctrl+x`  
-3. To save the file, type `y` and hit "Enter"  
-4. Confirm the name of the file and hit "Enter"  
+3. To save the file, type `y` and hit the `Enter/Return` key  
+4. Confirm the name of the file and hit the `Enter/Return` key  
 
 List the contents of the folder.  
 Can you see the file we have just created?  
@@ -242,8 +251,14 @@ What happened to `myfolder`?
 
 ## Basic tutorial #2
 
+The basic tutorial #1 above covered a **very** small part of what we need to know to navigate the Unix command line.  
+Depending on your level of knowledge, you might want to practice a bit more.  
+You can, for example, follow this nice tutorial set up by Mike Lee (@astrobiomike):  
+
 [astrobiomike.github.io/unix](http://astrobiomike.github.io/unix)
 
 ## Command challenge
+
+If you're feeling wise, why not put your Unix knowledge to test?  
 
 [cmdchallenge.com](http://cmdchallenge.com)

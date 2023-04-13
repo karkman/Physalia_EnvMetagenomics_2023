@@ -2,8 +2,11 @@
 
 1. [Exercises](#exercises)
    1. [Setting up the cloud computing](#setting-up-the-cloud-computing)
-   2. [Basic QC of sequencing data](#basic-qc-of-sequencing-data)
-   3. [Read-based taxonomic profiling](#read-based-taxonomic-profiling)
+      1. [Setting up VS Code](#setting-up-vs-code)
+      2. [Cloning the course's GitHub repository](#cloning-the-courses-github-repository)
+   2. [Getting the raw data](#getting-the-raw-data)
+   3. [Basic QC of sequencing data](#basic-qc-of-sequencing-data)
+   4. [Read-based taxonomic profiling](#read-based-taxonomic-profiling)
 
 ## Setting up the cloud computing
 
@@ -13,7 +16,8 @@ Your username - that you have received by e-mail/Slack - will be the same for th
 We will use `ssh` to connect to the remote machine.  
 We encourage the use of [VS Code](https://code.visualstudio.com/Download), but you are welcome to use any IDE or terminal emulator that you are comfortable with.  
 
-If using `VS Code`, do the following:  
+### Setting up VS Code
+
 1. Download `VS Code` and set it up as shown [here](Lectures/course-outline-and-practical-info.pdf)  
 2. Save the `.pem` file that you have received by e-mail somewhere in your computer  
 3. **Linux/MacOS users only:**  
@@ -45,6 +49,28 @@ Host physalia
 15. If a dialogue box opens asking the server type, select `Linux`
 16. If a dialogue box opens asking if you are sure, select `Continue`
 17. If a terminal does not open by default, go to `Terminal -> New Terminal`
+
+That's it, you should now be connected to the remote machine and ready to go!  
+**Remember:** every day you should redo steps 4-7 and update `HostName` to match the IP adress of the day.  
+
+### Cloning the course's GitHub repository
+
+**First day:** 
+
+```bash
+cd ~
+git clone https://github.com/karkman/Physalia_EnvMetagenomics_2023
+```
+
+**Every once in a while, at least each day before starting the activities:**  
+
+```bash
+cd ~/Physalia_EnvMetagenomics_2023
+git pull
+cd ..
+```
+
+## Getting the raw data
 
 ## Basic QC of sequencing data
 

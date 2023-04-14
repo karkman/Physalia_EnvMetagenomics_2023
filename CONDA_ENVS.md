@@ -2,4 +2,4 @@
 
 |ENV_NAME|PROGRAMS                          |OK?|
 |--------|----------------------------------|---|
-|QC      |fastqc, multiqc, chopper, cutadapt|NO |
+|QC      |fastqc, multiqc, chopper, cutadapt|YES|

@@ -97,7 +97,7 @@ Also copy the file `SAMPLES.txt`, which will be useful for running `for loop` an
 
 mkdir 01_DATA
 cp ~/Share/Data/${STUDY}/raw/* 01_DATA
-cp ~/Share/Data/${STUDAY}/SAMPLES.txt .
+cp ~/Share/Data/${STUDY}/SAMPLES.txt .
 ```
 
 ## QC and trimming

@@ -188,7 +188,7 @@ Do the data look better now?
 mkdir 05_TAXONOMIC_PROFILE
 ```
 
-## SingleM
+### SingleM
 
 ```bash
 conda activate singleM

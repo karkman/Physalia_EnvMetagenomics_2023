@@ -11,6 +11,8 @@
       2. [Read trimming](#read-trimming)
       3. [QC of the trimmed data](#qc-of-the-trimmed-data)
    4. [Read-based taxonomic profiling](#read-based-taxonomic-profiling)
+   5. [SingleM](#singlem)
+      1. [Sourmash](#sourmash)
 
 ## Setting up the cloud computing
 
@@ -182,6 +184,22 @@ Do the data look better now?
 
 ## Read-based taxonomic profiling
 
+```bash
+mkdir 05_TAXONOMIC_PROFILE
+```
+
+## SingleM
+
+```bash
+conda activate singleM
+
+singlem pipe --forward 03_TRIMMED/*.R1.fastq.gz \
+             --reverse 03_TRIMMED/*.R2.fastq.gz \
+             --otu_table 05_TAXONOMIC_PROFILE/singleM.tsv \
+             --singlem_packages ~/Share/Databases/singlem_pkgs_r95/S2.8.ribosomal_protein_S2_rpsB.gpkg.spkg \
+             --threads 4
+```
+
 ### Sourmash
 
 __Illumina data__
@@ -189,16 +207,16 @@ __Illumina data__
 ```bash 
 for sample in $(cat SAMPLES.txt); do
    sourmash sketch dna \
-            ${sample}.illumina.R?.fastq.gz \
+            03_TRIMMED/${sample}.illumina.R?.fastq.gz \
             -p k=31,scaled=1000,abund \
             --merge ${sample} \
-            -o ${sample}.sig.zip
+            -o 05_TAXONOMIC_PROFILE/${sample}.sig.zip
 
    sourmash gather \
-            ${sample}.sig.zip \
+            05_TAXONOMIC_PROFILE/${sample}.sig.zip \
             ~/Share/databases//gtdb-rs207.genomic-reps.dna.k31.zip \
             -k 31 \
-            -o ${sample}.gather.csv
+            -o 05_TAXONOMIC_PROFILE/${sample}.gather.csv
 done
 ```
 

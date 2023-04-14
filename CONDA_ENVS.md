@@ -3,3 +3,5 @@
 |ENV_NAME|PROGRAMS                          |OK?|
 |--------|----------------------------------|---|
 |QC      |fastqc, multiqc, chopper, cutadapt|YES|
+|singleM |singleM                           |NO |
+|sourmash|sourmash                          |NO |

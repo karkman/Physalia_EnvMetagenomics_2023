@@ -96,8 +96,8 @@ Also copy the file `SAMPLES.txt`, which will be useful for running `for loop` an
 # export STUDY="Tundra"
 
 mkdir 01_DATA
-cp ~/Share/Data/${STUDY}/raw/* 01_DATA
-cp ~/Share/Data/${STUDY}/SAMPLES.txt .
+cp ~/Share/Data/${STUDY}/raw/*.fastq.gz 01_DATA/
+cp ~/Share/Data/${STUDY}/SAMPLES.txt ./
 ```
 
 ## QC and trimming
@@ -181,3 +181,38 @@ Compare this with the report obtained earlier for the raw data.
 Do the data look better now?  
 
 ## Read-based taxonomic profiling
+
+### Sourmash
+
+__Illumina data__
+
+```bash 
+for sample in $(cat SAMPLES.txt); do
+   sourmash sketch dna \
+            ${sample}.illumina.R?.fastq.gz \
+            -p k=31,scaled=1000,abund \
+            --merge ${sample} \
+            -o ${sample}.sig.zip
+
+   sourmash gather \
+            ${sample}.sig.zip \
+            ~/Share/databases//gtdb-rs207.genomic-reps.dna.k31.zip \
+            -k 31 \
+            -o ${sample}.gather.csv
+done
+```
+
+__Nanopore data__
+
+```bash
+sourmash sketch dna \
+         SRR11673985_200k_trim.fastq.gz \
+         -p k=31,scaled=1000,abund \
+         --merge SRR11673985_200k \
+         -o SRR11673985_200k.sig.zip
+
+sourmash gather \
+         SRR11673985_200k.sig.zip \
+         /db/gtdb-rs207.genomic-reps.dna.k31.zip \
+         -k 31 \
+         -o SRR11673985_200k.gather.csv

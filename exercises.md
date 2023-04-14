@@ -202,9 +202,12 @@ singlem pipe --forward 03_TRIMMED/*.R1.fastq.gz \
 
 ### Sourmash
 
+
 __Illumina data__
 
-```bash 
+```bash
+conda activate sourmash_env
+
 for sample in $(cat SAMPLES.txt); do
    sourmash sketch dna \
             03_TRIMMED/${sample}.illumina.R?.fastq.gz \
@@ -224,13 +227,27 @@ __Nanopore data__
 
 ```bash
 sourmash sketch dna \
-         SRR11673985_200k_trim.fastq.gz \
+         03_TRIMMED/nanopore.fastq.gz \
          -p k=31,scaled=1000,abund \
-         --merge SRR11673985_200k \
-         -o SRR11673985_200k.sig.zip
+         -o 05_TAXONOMIC_PROFILE/nanopore.sig.zip
 
 sourmash gather \
-         SRR11673985_200k.sig.zip \
-         /db/gtdb-rs207.genomic-reps.dna.k31.zip \
+         05_TAXONOMIC_PROFILE/nanopore.sig.zip \
+         ~/Share/databases/gtdb-rs207.genomic-reps.dna.k31.zip \
          -k 31 \
-         -o SRR11673985_200k.gather.csv
+         -o 05_TAXONOMIC_PROFILE/nanopore.gather.csv
+```
+
+__Gather results__
+
+```bash
+sourmash tax metagenome \
+         -g 05_TAXONOMIC_PROFILE/*.gather.csv \
+         -t ~/Share/databases/gtdb-rs207.taxonomy.with-strain.csv.gz \
+         --output-dir 05_TAXONOMIC_PROFILE \
+         --output-base sourmash \
+         --output-form lineage_summary \
+         --rank species
+
+conda deactivate
+```

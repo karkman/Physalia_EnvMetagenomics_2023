@@ -143,8 +143,8 @@ for sample in ${cat SAMPLES.txt}; do
            -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC \
            -A CTGTCTCTTATACACATCTGACGCTGCCGACGA \
            -m 50 \
-           -j 4 \
-           --nextseq-trim 20 &> 03_TRIMMED/${sample}.illumina.log
+           -q 20 \
+           -j 4 2> 03_TRIMMED/${sample}.illumina.log
 done
 ```
 
@@ -160,7 +160,7 @@ Now the data has been trimmed, it would be a good idea to run `FastQC` and `Mult
 Modify the commands used for the raw data to match the trimmed data and run them.  
 
 While you wait, take a look at the `Cutadapt` logs.  
-Because we used redirection (`>`) to capture the output (`stdout`) of Cutadapt, this information is now stored in a file (`03_TRIMMED/${sample}.illumina.log`).  
+Because we used redirection (`>`) to capture the output (`stderr`) of Cutadapt, this information is now stored in a file (`03_TRIMMED/${sample}.illumina.log`).  
 Take a look at the `Cutadapt` log for one of the samples using the program `less`:  
 
 **NOTE:** You can scroll up and down using the arrow keys on your keyboard, or move one "page" at a time using the spacebar.  

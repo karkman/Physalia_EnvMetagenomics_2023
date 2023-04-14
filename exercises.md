@@ -105,7 +105,9 @@ cp ~/Share/Data/${STUDY}/SAMPLES.txt ./
 ## QC and trimming
 
 Now that you have copied the raw data to your working directory, let's do some quality control.  
-We will use [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc) and [MultiQC](https://multiqc.info/) for quality control, and [Cutadapt](https://cutadapt.readthedocs.io/en/stable/) and [chopper](https://github.com/wdecoster/chopper) for trimming the Illumina and Nanopore data, respectively.  
+The sequencing process is subject to several types of problems that can introduce errors and artifacts in the sequences.  
+Because of this, bioinformatics analyses usually start with the quality control of raw sequences.  
+He we will use [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc) and [MultiQC](https://multiqc.info/) to obtain quality reports, and [Cutadapt](https://cutadapt.readthedocs.io/en/stable/) and [chopper](https://github.com/wdecoster/chopper) for trimming the Illumina and Nanopore data, respectively.  
 
 ### QC of the raw data
 
@@ -125,7 +127,12 @@ multiqc 02_QC_RAW -o 02_QC_RAW --interactive
 ```
 
 After the QC is finished, copy the `MultiQC` report (`02_QC_RAW/multiqc_report.html`) to your local machine and open it with your favourite browser.  
-We will go through the report together before continuing with the pre-processing.
+We will go through the report together before continuing with the pre-processing.  
+
+**NOTE:** to move files to and from local and remote machines, you can use: 
+- The command-line tool [scp](https://kb.iu.edu/d/agye)  
+- A file transfer software such as [FileZilla](https://filezilla-project.org)  
+- The `VS Code` built-in `Explorer` tool (`View -> Explorer`)  
 
 ### Read trimming
 

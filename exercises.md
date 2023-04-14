@@ -5,7 +5,10 @@
       1. [Setting up VS Code](#setting-up-vs-code)
       2. [Cloning the course's GitHub repository](#cloning-the-courses-github-repository)
    2. [Getting the raw data](#getting-the-raw-data)
-   3. [Basic QC of sequencing data](#basic-qc-of-sequencing-data)
+   3. [QC and trimming](#qc-and-trimming)
+      1. [Setting things up](#setting-things-up)
+      2. [Illumina data](#illumina-data)
+      3. [Nanopore data](#nanopore-data)
    4. [Read-based taxonomic profiling](#read-based-taxonomic-profiling)
 
 ## Setting up the cloud computing
@@ -81,9 +84,42 @@ Before copying, uncomment the study you chose (remove `#`).
 #STUDY="WWTP"
 #STUDY="Tundra"
 
-cp ~/Share/Data/$STUDY/raw/* 01_DATA/
+mkdir 01_DATA
+cp ~/Share/Data/$STUDY/raw/* 01_DATA
+cp ~/Share/Data/$STUDAY/SAMPLES.txt .
 ```
 
-## Basic QC of sequencing data
+## QC and trimming
+
+### Setting things up
+
+```bash
+mkdir 02_TRIMMED
+conda activate QC
+```
+
+### Illumina data
+
+__ANTTI__: ARE THE ADAPTERS THE SAME FOR YOUR SAMPLES? ARE YOUR SAMPLES NEXTSEQ TOO?
+
+```bash
+for sample in ${cat SAMPLES.txt}; do
+  cutadapt 01_DATA/${sample}.illumina.R1.fastq.gz \
+           01_DATA/${sample}.illumina.R2.fastq.gz \
+           -o 02_TRIMMED/${sample}.illumina.R1.fastq.gz \
+           -p 02_TRIMMED/${sample}.illumina.R2.fastq.gz \
+           -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC \
+           -A CTGTCTCTTATACACATCTGACGCTGCCGACGA \
+           -m 50 \
+           -j 4 \
+           --nextseq-trim 20 &> 02_TRIMMED/${sample}.illumina.log
+done
+```
+
+### Nanopore data
+
+```bash
+gunzip -c 01_DATA/nanopore.fastq.gz | chopper -q 10 -l 500 -t 4 | gzip > 02_TRIMMED/nanopore.fastq.gz
+```
 
 ## Read-based taxonomic profiling

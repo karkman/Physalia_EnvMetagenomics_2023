@@ -16,7 +16,7 @@
 |Morning  |Introduction to metagenomics     |[Slides](Lectures/introduction-to-metagenomics.pdf)                                                            |
 |Morning  |Setting up the cloud computing   |[Hands-on](exercises.md#setting-up-the-cloud-computing)                                                        |
 |Afternoon|Getting the raw data             |[Hands-on](exercises.md##getting-the-raw-data)                                                                 |
-|Afternoon|Basic QC of sequencing data      |[Slides](Lectures/QC-and-trimming.pdf) / [Hands-on](exercises.md#basic-qc-of-sequencing-data)                  |
+|Afternoon|QC and trimming                  |[Slides](Lectures/QC-and-trimming.pdf) / [Hands-on](exercises.md#qc-and-trimming)                              |
 |Afternoon|Read-based taxonomic profiling   |[Slides](Lectures/read-based-taxonomic-profiling.pdf) / [Hands-on](exercises.md#read-based-taxonomic-profiling)|
 
 ## Tuesday 18.04.23

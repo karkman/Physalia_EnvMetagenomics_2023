@@ -3,7 +3,8 @@
 1. [Exercises](#exercises)
    1. [Setting up the cloud computing](#setting-up-the-cloud-computing)
       1. [Setting up VS Code](#setting-up-vs-code)
-      2. [Cloning the course's GitHub repository](#cloning-the-courses-github-repository)
+      2. [Connecting to the remote machine with VS Code](#connecting-to-the-remote-machine-with-vs-code)
+      3. [Cloning the course's GitHub repository](#cloning-the-courses-github-repository)
    2. [Getting the raw data](#getting-the-raw-data)
    3. [QC and trimming](#qc-and-trimming)
       1. [Setting things up](#setting-things-up)
@@ -45,6 +46,9 @@ Host physalia
    2. User: change to your own username
    3. IdentityFile: change to the location and name of the `.pem` file that you have saved in your computer 
 10. Save and close the `config` file
+
+### Connecting to the remote machine with VS Code
+
 11. Go to `View -> Command Palette`
 12. Search for `ssh connect`
 13. Select `Remote-SHH: Connect to Host...`
@@ -58,14 +62,19 @@ That's it, you should now be connected to the remote machine and ready to go!
 
 ### Cloning the course's GitHub repository
 
-**First day:** 
+Once you have connected to the remote machine, you will be in your home folder (`/users/userXX`, also represented by `~` or `$HOME`).  
+**Remember:** You can check where you are with the command `pwd`.  
+
+To have access to the course's content, let's copy the GitHub repository to your `home` folder using `git clone`:
+
+**Do this on the first day:** 
 
 ```bash
 cd ~
 git clone https://github.com/karkman/Physalia_EnvMetagenomics_2023
 ```
 
-**Every once in a while, at least each day before starting the activities:**  
+**Do this every once in a while, at least each day before starting the activities:**  
 
 ```bash
 cd ~/Physalia_EnvMetagenomics_2023

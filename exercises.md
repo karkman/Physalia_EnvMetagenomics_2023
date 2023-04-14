@@ -7,9 +7,9 @@
       3. [Cloning the course's GitHub repository](#cloning-the-courses-github-repository)
    2. [Getting the raw data](#getting-the-raw-data)
    3. [QC and trimming](#qc-and-trimming)
-      1. [Setting things up](#setting-things-up)
-      2. [Illumina data](#illumina-data)
-      3. [Nanopore data](#nanopore-data)
+      1. [QC of the raw data](#qc-of-the-raw-data)
+      2. [Read trimming](#read-trimming)
+      3. [QC of the trimmed data](#qc-of-the-trimmed-data)
    4. [Read-based taxonomic profiling](#read-based-taxonomic-profiling)
 
 ## Setting up the cloud computing
@@ -81,7 +81,7 @@ cd ~/Physalia_EnvMetagenomics_2023
 git pull
 ```
 
-**Note:** All exercises will be executed inside the `Physalia_EnvMetagenomics_2023` folder that you cloned inside your own home folder.  
+**Note:** All exercises will be executed inside the `Physalia_EnvMetagenomics_2023` folder that you cloned inside your own `home` folder.  
 So remember to `cd ~/Physalia_EnvMetagenomics_2023` every time you connect to the remote machine.  
 
 ## Getting the raw data
@@ -102,14 +102,37 @@ cp ~/Share/Data/$STUDAY/SAMPLES.txt .
 
 ## QC and trimming
 
-### Setting things up
+Now that you have copied the raw data to your working directory, let's do some quality control.  
+We will use [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc) and [MultiQC](https://multiqc.info/) for quality control, and [Cutadapt](https://cutadapt.readthedocs.io/en/stable/) and [chopper](https://github.com/wdecoster/chopper) for trimming the Illumina and Nanopore data, respectively.  
+
+### QC of the raw data
+
+Go to your `Physalia_EnvMetagenomics_2023` folder, create a folder for the QC files, and activate the `conda` environment:  
+
+```bash
+cd ~/Physalia_EnvMetagenomics_2023
+mkdir 02_QC_RAW
+conda activate QC
+```
+
+And now you're ready to run the QC on the raw data:
+
+```bash
+fastqc 01_DATA/*.fastq.gz -o 02_QC_RAW -t 4
+multiqc 02_QC_RAW -o 02_QC_RAW --interactive
+```
+
+After the QC is finished, copy the MultiQC report (`02_QC_RAW/multiqc_report.html`) to your local machine and open it with your favourite browser.  
+We will go through the report together before continuing with the pre-processing.
+
+### Read trimming
 
 ```bash
 mkdir 02_TRIMMED
 conda activate QC
 ```
 
-### Illumina data
+**Illumina data:**  
 
 __ANTTI__: ARE THE ADAPTERS THE SAME FOR YOUR SAMPLES? ARE YOUR SAMPLES NEXTSEQ TOO?
 
@@ -127,10 +150,12 @@ for sample in ${cat SAMPLES.txt}; do
 done
 ```
 
-### Nanopore data
+**Nanopore data:**  
 
 ```bash
-gunzip -c 01_DATA/nanopore.fastq.gz | chopper -q 10 -l 500 -t 4 | gzip > 02_TRIMMED/nanopore.fastq.gz
+gunzip -c 01_DATA/nanopore.fastq.gz | chopper -q 10 -l 1000 -t 4 | gzip > 02_TRIMMED/nanopore.fastq.gz
 ```
+
+### QC of the trimmed data
 
 ## Read-based taxonomic profiling

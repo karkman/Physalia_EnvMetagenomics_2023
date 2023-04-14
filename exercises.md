@@ -11,8 +11,8 @@
       2. [Read trimming](#read-trimming)
       3. [QC of the trimmed data](#qc-of-the-trimmed-data)
    4. [Read-based taxonomic profiling](#read-based-taxonomic-profiling)
-   5. [SingleM](#singlem)
-      1. [Sourmash](#sourmash)
+      1. [SingleM](#singlem)
+      2. [Sourmash](#sourmash)
 
 ## Setting up the cloud computing
 

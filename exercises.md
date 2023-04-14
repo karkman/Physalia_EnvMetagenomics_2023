@@ -199,6 +199,14 @@ Do the data look better now?
 
 ## Read-based taxonomic profiling
 
+There are many different tools and approaches for obtaining taxonomic profiles from metagenomes.  
+Here we will use two read-based tools: [singleM](https://wwood.github.io/singlem/) and [sourmash](https://sourmash.readthedocs.io/en/latest/).  
+What is the basic approach that each of these tools use and how they can impact the results?  
+And how similar are taxonomic profiles obtained from Illumina and Nanopore data?  
+Well, let's find out!  
+
+First let's create a folder to store the results:  
+
 ```bash
 mkdir 05_TAXONOMIC_PROFILE
 ```
@@ -258,3 +266,8 @@ sourmash tax metagenome -g 05_TAXONOMIC_PROFILE/*.gather.csv \
                         --output-form lineage_summary \
                         --rank genus
 ```
+
+
+The idea here is to: 
+- Compare the taxonomic profiles from each different tools  
+- Compare the taxonomic profiles obtainted from Illumina and Nanopore data

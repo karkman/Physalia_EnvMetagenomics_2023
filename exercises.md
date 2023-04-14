@@ -72,17 +72,19 @@ cd ~/Physalia_EnvMetagenomics_2023
 git pull
 ```
 
-All exercises will be executed inside the course repository folder (`Physalia_EnvMetagenomics_2023`) that you cloned to your own home folder.
+**Note:** All exercises will be executed inside the `Physalia_EnvMetagenomics_2023` folder that you cloned inside your own home folder.  
+So remember to `cd ~/Physalia_EnvMetagenomics_2023` every time you connect to the remote machine.  
 
 ## Getting the raw data
 
-Choose which data set you would like to analyse on the course (`Tundra` or `WWTP`).  
-Copy the raw sequence data to your own `01_DATA` folder.  
-Before copying, uncomment the study you chose (remove `#`).
+Choose which data set you would like to analyse (`Tundra` or `WWTP`).  
+In the commands below, first uncomment the study you chose (remove the `#`) and run the `export` command.  
+Then, copy the raw sequencing data to your own `01_DATA` folder.  
+Also copy the file `SAMPLES.txt`, which will be useful for running `for loop` and etc.  
 
 ```bash
-#STUDY="WWTP"
-#STUDY="Tundra"
+# export STUDY="WWTP"
+# export STUDY="Tundra"
 
 mkdir 01_DATA
 cp ~/Share/Data/$STUDY/raw/* 01_DATA

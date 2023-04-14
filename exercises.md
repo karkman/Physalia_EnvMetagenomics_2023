@@ -136,12 +136,14 @@ We will go through the report together before continuing with the pre-processing
 
 ### Read trimming
 
+Before start trimming the data, let's create a folder for the processed data and activate the `conda` environment:  
+
 ```bash
 mkdir 03_TRIMMED
 conda activate QC
 ```
 
-**Illumina data:**  
+For the Illumina data, we will use a `for loop` to process each of the samples one after the other:  
 
 ```bash
 for sample in $(cat SAMPLES.txt); do
@@ -157,7 +159,13 @@ for sample in $(cat SAMPLES.txt); do
 done
 ```
 
-**Nanopore data:**  
+Looking at the [online manual](https://cutadapt.readthedocs.io/en/stable/index.html) for `Cutadapt` or running `cutadapt --help`, answer:  
+
+- What do the `-o`, `-p`, `-a`, `-A`, `m`, `-q`, and `-j` flags mean?  
+- How did we choose the values for `-m` and `-q`?  
+- What is the purpose of the redirection (`> 03_TRIMMED/${sample}.illumina.log`)?  
+
+And for the Nanopore data:  
 
 ```bash
 gunzip -c 01_DATA/nanopore.fastq.gz | chopper -q 10 -l 1000 -t 4 | gzip > 03_TRIMMED/nanopore.fastq.gz

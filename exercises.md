@@ -137,7 +137,7 @@ conda activate QC
 **Illumina data:**  
 
 ```bash
-for sample in ${cat SAMPLES.txt}; do
+for sample in $(cat SAMPLES.txt); do
   cutadapt 01_DATA/${sample}.illumina.R1.fastq.gz \
            01_DATA/${sample}.illumina.R2.fastq.gz \
            -o 03_TRIMMED/${sample}.illumina.R1.fastq.gz \
@@ -146,7 +146,7 @@ for sample in ${cat SAMPLES.txt}; do
            -A CTGTCTCTTATACACATCTGACGCTGCCGACGA \
            -m 50 \
            -q 20 \
-           -j 4 2> 03_TRIMMED/${sample}.illumina.log
+           -j 4 > 03_TRIMMED/${sample}.illumina.log
 done
 ```
 
@@ -163,7 +163,7 @@ Modify the commands used for the raw data to match the trimmed data and run them
 
 While you wait, take a look at the `Cutadapt` logs.  
 When `Cutadapt` runs, it prints lots of interesting information to the screen, which we lose once we logout of the remote machine.  
-Because we used redirection (`2>`) to capture the output (`stderr`) of `Cutadapt`, this information is now stored in a file (`03_TRIMMED/${sample}.illumina.log`).  
+Because we used redirection (`>`) to capture the standard output (`stdout`) of `Cutadapt`, this information is now stored in a file (`03_TRIMMED/${sample}.illumina.log`).  
 Take a look at the log file for one of the samples using the program `less`:  
 
 **NOTE:** You can scroll up and down using the arrow keys on your keyboard, or move one "page" at a time using the spacebar.  
@@ -176,7 +176,7 @@ By looking at the `Cutadapt` log, can you answer:
 - How many reads contained adapters?  
 - How many read pairs were removed because they were too short?  
 - How many base calls were quality-trimmed?  
--  Overall, what is the percentage of base pairs that were kept?  
+- Overall, what is the percentage of base pairs that were kept?  
 
 When `FastQC` and `MultiQC` have finished, copy the `MultiQC` report to your local machine and open it with a browser.  
 Compare this with the report obtained earlier for the raw data.  

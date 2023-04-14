@@ -96,8 +96,8 @@ Also copy the file `SAMPLES.txt`, which will be useful for running `for loop` an
 # export STUDY="Tundra"
 
 mkdir 01_DATA
-cp ~/Share/Data/$STUDY/raw/* 01_DATA
-cp ~/Share/Data/$STUDAY/SAMPLES.txt .
+cp ~/Share/Data/${STUDY}/raw/* 01_DATA
+cp ~/Share/Data/${STUDAY}/SAMPLES.txt .
 ```
 
 ## QC and trimming
@@ -122,40 +122,61 @@ fastqc 01_DATA/*.fastq.gz -o 02_QC_RAW -t 4
 multiqc 02_QC_RAW -o 02_QC_RAW --interactive
 ```
 
-After the QC is finished, copy the MultiQC report (`02_QC_RAW/multiqc_report.html`) to your local machine and open it with your favourite browser.  
+After the QC is finished, copy the `MultiQC` report (`02_QC_RAW/multiqc_report.html`) to your local machine and open it with your favourite browser.  
 We will go through the report together before continuing with the pre-processing.
 
 ### Read trimming
 
 ```bash
-mkdir 02_TRIMMED
+mkdir 03_TRIMMED
 conda activate QC
 ```
 
 **Illumina data:**  
 
-__ANTTI__: ARE THE ADAPTERS THE SAME FOR YOUR SAMPLES? ARE YOUR SAMPLES NEXTSEQ TOO?
-
 ```bash
 for sample in ${cat SAMPLES.txt}; do
   cutadapt 01_DATA/${sample}.illumina.R1.fastq.gz \
            01_DATA/${sample}.illumina.R2.fastq.gz \
-           -o 02_TRIMMED/${sample}.illumina.R1.fastq.gz \
-           -p 02_TRIMMED/${sample}.illumina.R2.fastq.gz \
+           -o 03_TRIMMED/${sample}.illumina.R1.fastq.gz \
+           -p 03_TRIMMED/${sample}.illumina.R2.fastq.gz \
            -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC \
            -A CTGTCTCTTATACACATCTGACGCTGCCGACGA \
            -m 50 \
            -j 4 \
-           --nextseq-trim 20 &> 02_TRIMMED/${sample}.illumina.log
+           --nextseq-trim 20 &> 03_TRIMMED/${sample}.illumina.log
 done
 ```
 
 **Nanopore data:**  
 
 ```bash
-gunzip -c 01_DATA/nanopore.fastq.gz | chopper -q 10 -l 1000 -t 4 | gzip > 02_TRIMMED/nanopore.fastq.gz
+gunzip -c 01_DATA/nanopore.fastq.gz | chopper -q 10 -l 1000 -t 4 | gzip > 03_TRIMMED/nanopore.fastq.gz
 ```
 
 ### QC of the trimmed data
+
+Now the data has been trimmed, it would be a good idea to run `FastQC` and `MultiQC` again.  
+Modify the commands used for the raw data to match the trimmed data and run them.  
+
+While you wait, take a look at the `Cutadapt` logs.  
+Because we used redirection (`>`) to capture the output (`stdout`) of Cutadapt, this information is now stored in a file (`03_TRIMMED/${sample}.illumina.log`).  
+Take a look at the `Cutadapt` log for one of the samples using the program `less`:  
+
+**NOTE:** You can scroll up and down using the arrow keys on your keyboard, or move one "page" at a time using the spacebar.  
+**NOTE:** To quit `less`, hit the `q` key.
+
+**NOTE:** If you have set it up, you can also access the files using the `Explorer` tab on `VS Code` (`View -> Explorer`).  
+
+By looking at the `Cutadapt` log, can you answer:  
+- How many read pairs we had originally?  
+- How many reads contained adapters?  
+- How many read pairs were removed because they were too short?  
+- How many base calls were quality-trimmed?  
+-  Overall, what is the percentage of base pairs that were kept?  
+
+When `FastQC` and `MultiQC` have finished, copy the `MultiQC` report to your local machine and open it with a browser.  
+Compare this with the report obtained earlier for the raw data.  
+Do the data look better now?  
 
 ## Read-based taxonomic profiling

@@ -193,61 +193,53 @@ mkdir 05_TAXONOMIC_PROFILE
 ```bash
 conda activate singleM
 
+# Illumina data
 singlem pipe --forward 03_TRIMMED/*.R1.fastq.gz \
              --reverse 03_TRIMMED/*.R2.fastq.gz \
-             --otu_table 05_TAXONOMIC_PROFILE/singleM.tsv \
+             --otu_table 05_TAXONOMIC_PROFILE/singleM.Illumina.tsv \
+             --singlem_packages ~/Share/Databases/singlem_pkgs_r95/S2.8.ribosomal_protein_S2_rpsB.gpkg.spkg \
+             --threads 4
+
+# Nanopore data
+singlem pipe --sequences 03_TRIMMED/nanopore.fastq.gz \
+             --otu_table 05_TAXONOMIC_PROFILE/singleM.nanopore.tsv \
              --singlem_packages ~/Share/Databases/singlem_pkgs_r95/S2.8.ribosomal_protein_S2_rpsB.gpkg.spkg \
              --threads 4
 ```
 
 ### Sourmash
 
-
-__Illumina data__
-
 ```bash
-conda activate sourmash_env
+conda activate sourmash
 
+# Illumina data
 for sample in $(cat SAMPLES.txt); do
-   sourmash sketch dna \
-            03_TRIMMED/${sample}.illumina.R?.fastq.gz \
-            -p k=31,scaled=1000,abund \
-            --merge ${sample} \
-            -o 05_TAXONOMIC_PROFILE/${sample}.sig.zip
+  sourmash sketch dna 03_TRIMMED/${sample}.illumina.R?.fastq.gz \
+                      -p k=31,scaled=1000,abund \
+                      -o 05_TAXONOMIC_PROFILE/${sample}.sig.zip \
+                      --merge ${sample}
 
-   sourmash gather \
-            05_TAXONOMIC_PROFILE/${sample}.sig.zip \
-            ~/Share/databases//gtdb-rs207.genomic-reps.dna.k31.zip \
-            -k 31 \
-            -o 05_TAXONOMIC_PROFILE/${sample}.gather.csv
+  sourmash gather 05_TAXONOMIC_PROFILE/${sample}.sig.zip \
+                  ~/Share/Databases/gtdb-rs207.genomic-reps.dna.k31.zip \
+                  -k 31 \
+                  -o 05_TAXONOMIC_PROFILE/${sample}.gather.csv
 done
-```
 
-__Nanopore data__
+# Nanopore data
+sourmash sketch dna 03_TRIMMED/nanopore.fastq.gz \
+                    -p k=31,scaled=1000,abund \
+                    -o 05_TAXONOMIC_PROFILE/nanopore.sig.zip
 
-```bash
-sourmash sketch dna \
-         03_TRIMMED/nanopore.fastq.gz \
-         -p k=31,scaled=1000,abund \
-         -o 05_TAXONOMIC_PROFILE/nanopore.sig.zip
+sourmash gather 05_TAXONOMIC_PROFILE/nanopore.sig.zip \
+                ~/Share/Databases/gtdb-rs207.genomic-reps.dna.k31.zip \
+                -k 31 \
+                -o 05_TAXONOMIC_PROFILE/nanopore.gather.csv
 
-sourmash gather \
-         05_TAXONOMIC_PROFILE/nanopore.sig.zip \
-         ~/Share/databases/gtdb-rs207.genomic-reps.dna.k31.zip \
-         -k 31 \
-         -o 05_TAXONOMIC_PROFILE/nanopore.gather.csv
-```
-
-__Gather results__
-
-```bash
-sourmash tax metagenome \
-         -g 05_TAXONOMIC_PROFILE/*.gather.csv \
-         -t ~/Share/databases/gtdb-rs207.taxonomy.with-strain.csv.gz \
-         --output-dir 05_TAXONOMIC_PROFILE \
-         --output-base sourmash \
-         --output-form lineage_summary \
-         --rank species
-
-conda deactivate
+# Gather results
+sourmash tax metagenome -g 05_TAXONOMIC_PROFILE/*.gather.csv \
+                        -t ~/Share/Databases/gtdb-rs207.genomic-reps.dna.k31.zip \
+                        --output-dir 05_TAXONOMIC_PROFILE \
+                        --output-base sourmash \
+                        --output-form lineage_summary \
+                        --rank genus
 ```

@@ -160,8 +160,9 @@ Now the data has been trimmed, it would be a good idea to run `FastQC` and `Mult
 Modify the commands used for the raw data to match the trimmed data and run them.  
 
 While you wait, take a look at the `Cutadapt` logs.  
-Because we used redirection (`>`) to capture the output (`stderr`) of Cutadapt, this information is now stored in a file (`03_TRIMMED/${sample}.illumina.log`).  
-Take a look at the `Cutadapt` log for one of the samples using the program `less`:  
+When `Cutadapt` runs, it prints lots of interesting information to the screen, which we lose once we logout of the remote machine.  
+Because we used redirection (`2>`) to capture the output (`stderr`) of `Cutadapt`, this information is now stored in a file (`03_TRIMMED/${sample}.illumina.log`).  
+Take a look at the log file for one of the samples using the program `less`:  
 
 **NOTE:** You can scroll up and down using the arrow keys on your keyboard, or move one "page" at a time using the spacebar.  
 **NOTE:** To quit `less`, hit the `q` key.

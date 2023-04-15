@@ -290,3 +290,45 @@ The idea here is to:
 
 Hopefully you will be able to learn a bit about these metagenomic datasets.  
 And realise that there is so much that still remains unknown...
+
+## Metagenomic assembly
+
+
+```bash
+cd ~/Physalia_EnvMetagenomics_2023
+mkdir 04_ASSEMBLY
+```
+
+For metagenomic assembly of our Nanopore data we will use [Flye](https://github.com/fenderglass/Flye). Flye is a long-read de novo assembler that handles also metagenomic data.  
+
+Before you start the assembly, have a look at the [Flye manual](https://github.com/fenderglass/Flye/blob/flye/docs/USAGE.md), escpecially the parts about Nanopore data and metagenome assembly.
+
+What options do we need? We have only given the output directory for you in the script below.
+
+```bash 
+conda activate flye_env
+
+flye  ... \
+      --out-dir 04_ASSEMBLY
+
+conda deactivate 
+```
+
+## Assembly QC
+
+The metagenomic assembly was done with heavily downsampled sequence data. But we have prepared a metagenomic assembly from a bigger set for you.  
+Copy the bigger assembly from the `Share` folder to the same output folder as metaflye output. We will run QC for both assemblies and compare the outputs.  
+
+```bash
+# export STUDY="WWTP"
+# export STUDY="Tundra"
+
+cp ~/Share/${STUDY}/aassembly/* 04_ASSEMBLY/
+```
+
+For assembly QC we will use the metagenomic version of Quality Assessment Tool for Genome Assemblies, [Quast](http://quast.sourceforge.net/) for evaluating (and comparing) our assemblies.
+
+```bash
+conda activate quast_env
+metaquast.py ...
+```

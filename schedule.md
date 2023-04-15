@@ -24,7 +24,10 @@
 |Time     |Activity|Link|
 |---------|--------|----|
 |Morning  |Questions from the previous day||
-|Afternoon|||
+|Morning  |Metagenomic assembly - hands-on|[Hands-on](exercises.md#metagenomic-assembly)|
+|Morning  |Metagenomic assembly - lecture |[Slides](Lectures/Assembly-and-QC.pdf)|
+|Afternoon|Metagenomic assembly QC |[Hands-on](exercises.md#assembly-qc)|
+|Afternoon|Taxonomic profiles in R |[Hands-on](exercises.md#taxonomic-profiles-in-r)|
 
 ## Wednesday 19.04.23
 

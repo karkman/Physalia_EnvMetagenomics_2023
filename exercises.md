@@ -11,7 +11,7 @@
       2. [Read trimming](#read-trimming)
       3. [QC of the trimmed data](#qc-of-the-trimmed-data)
    4. [Read-based taxonomic profiling](#read-based-taxonomic-profiling)
-   5. [SingleM](#singlem)
+   5. [singleM](#singlem)
    6. [sourmash](#sourmash)
    7. [Visualizing the taxonomic profiles:](#visualizing-the-taxonomic-profiles)
 
@@ -98,7 +98,9 @@ Also copy the file `SAMPLES.txt`, which will be useful for running `for loop` an
 # export STUDY="WWTP"
 # export STUDY="Tundra"
 
+cd ~/Physalia_EnvMetagenomics_2023
 mkdir 01_DATA
+
 cp ~/Share/Data/${STUDY}/raw/*.fastq.gz 01_DATA/
 cp ~/Share/Data/${STUDY}/SAMPLES.txt ./
 ```
@@ -140,6 +142,7 @@ We will go through the report together before continuing with the pre-processing
 Before start trimming the data, let's create a folder for the processed data and activate the `conda` environment:  
 
 ```bash
+cd ~/Physalia_EnvMetagenomics_2023
 mkdir 03_TRIMMED
 conda activate QC
 ```
@@ -184,7 +187,6 @@ Take a look at the log file for one of the samples using the program `less`:
 
 **NOTE:** You can scroll up and down using the arrow keys on your keyboard, or move one "page" at a time using the spacebar.  
 **NOTE:** To quit `less`, hit the `q` key.
-
 **NOTE:** If you have set it up, you can also access the files using the `Explorer` tab on `VS Code` (`View -> Explorer`).  
 
 By looking at the `Cutadapt` log, can you answer:  
@@ -209,10 +211,11 @@ Well, let's find out!
 First let's create a folder to store the results:  
 
 ```bash
+cd ~/Physalia_EnvMetagenomics_2023
 mkdir 05_TAXONOMIC_PROFILE
 ```
 
-## SingleM
+## singleM
 
 And now let's run `singleM`:  
 

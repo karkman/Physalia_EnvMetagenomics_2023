@@ -304,7 +304,7 @@ For metagenomic assembly of our Nanopore data we will use [Flye](https://github.
 Before you start the assembly, have a look at the [Flye manual](https://github.com/fenderglass/Flye/blob/flye/docs/USAGE.md), escpecially the parts about Nanopore data and metagenome assembly.
 
 __What options do we need?__  
-We have only given the output directory for you in the script below.
+We have only given the output directory in the script below.
 
 ```bash 
 conda activate flye_env

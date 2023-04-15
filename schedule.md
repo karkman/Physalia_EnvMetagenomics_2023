@@ -23,7 +23,7 @@
 
 |Time     |Activity|Link|
 |---------|--------|----|
-|Morning  |Questions from the previous day||
+|Morning  |Questions from the previous day|[Flinga](https://flinga.fi/s/FFQ5876) |
 |Morning  |Metagenomic assembly |[Slides](Lectures/Assembly-and-QC.pdf) / [Hands-on](exercises.md#metagenomic-assembly)|
 |Afternoon|Assembly QC |[Hands-on](exercises.md#assembly-qc)|
 |Afternoon|Taxonomic profiles in R |[Hands-on](exercises.md#taxonomic-profiles-in-r)|

@@ -11,9 +11,12 @@
       2. [Read trimming](#read-trimming)
       3. [QC of the trimmed data](#qc-of-the-trimmed-data)
    4. [Read-based taxonomic profiling](#read-based-taxonomic-profiling)
-   5. [singleM](#singlem)
-   6. [sourmash](#sourmash)
-   7. [Visualizing the taxonomic profiles:](#visualizing-the-taxonomic-profiles)
+      1. [singleM](#singlem)
+      2. [sourmash](#sourmash)
+   5. [Visualizing the taxonomic profiles](#visualizing-the-taxonomic-profiles)
+   6. [Metagenomic assembly](#metagenomic-assembly)
+   7. [Assembly QC](#assembly-qc)
+   8. [Genome-resolved metagenomics with anvi'o](#genome-resolved-metagenomics-with-anvio)
 
 ## Setting up the cloud computing
 
@@ -215,7 +218,7 @@ cd ~/Physalia_EnvMetagenomics_2023
 mkdir 05_TAXONOMIC_PROFILE
 ```
 
-## singleM
+### singleM
 
 And now let's run `singleM`:  
 
@@ -236,7 +239,7 @@ singlem pipe --sequences 03_TRIMMED/nanopore.fastq.gz \
              --threads 4
 ```
 
-## sourmash
+### sourmash
 
 And now `sourmash`:  
 

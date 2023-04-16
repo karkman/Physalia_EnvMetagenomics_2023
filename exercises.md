@@ -307,7 +307,7 @@ __What options do we need?__
 We have only given the output directory in the script below.
 
 ```bash 
-conda activate flye_env
+conda activate flye
 
 flye  ... \
       --out-dir 04_ASSEMBLY
@@ -325,11 +325,18 @@ Copy the bigger assembly from the `Share` folder to the same output folder as me
 # export STUDY="Tundra"
 
 cp ~/Share/${STUDY}/aassembly/* 04_ASSEMBLY/
+
+mkdir 06_ASSEMBLY_QC
 ```
 
 For assembly QC we will use the metagenomic version of Quality Assessment Tool for Genome Assemblies, [Quast](http://quast.sourceforge.net/) for evaluating (and comparing) our assemblies.
 
 ```bash
-conda activate quast_env
-metaquast.py ...
+conda activate quast
+metaquast.py 04_ASSEMBLY/*.fasta \
+      --output-dir 06_ASSEMBLY_QC \
+      --max-ref-number 0 \
+      --fast \
+      --threads 4
 ```
+

@@ -13,10 +13,10 @@
    4. [Read-based taxonomic profiling](#read-based-taxonomic-profiling)
       1. [singleM](#singlem)
       2. [sourmash](#sourmash)
-   5. [Visualizing the taxonomic profiles](#visualizing-the-taxonomic-profiles)
-   6. [Metagenomic assembly](#metagenomic-assembly)
-   7. [Assembly QC](#assembly-qc)
-   8. [Genome-resolved metagenomics with anvi'o](#genome-resolved-metagenomics-with-anvio)
+      3. [Visualizing the taxonomic profiles](#visualizing-the-taxonomic-profiles)
+   5. [Metagenomic assembly](#metagenomic-assembly)
+   6. [Assembly QC](#assembly-qc)
+   7. [Genome-resolved metagenomics with anvi'o](#genome-resolved-metagenomics-with-anvio)
 
 ## Setting up the cloud computing
 

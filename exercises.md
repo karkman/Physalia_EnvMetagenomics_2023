@@ -296,7 +296,7 @@ And realise that there is so much that still remains unknown...
 
 ```bash
 cd ~/Physalia_EnvMetagenomics_2023
-mkdir 04_ASSEMBLY
+mkdir 06_ASSEMBLY
 ```
 
 For metagenomic assembly of our Nanopore data we will use [Flye](https://github.com/fenderglass/Flye). Flye is a long-read de novo assembler that handles also metagenomic data.  
@@ -310,7 +310,7 @@ We have only given the output directory in the script below.
 conda activate flye
 
 flye  ... \
-      --out-dir 04_ASSEMBLY
+      --out-dir 06_ASSEMBLY
 
 conda deactivate 
 ```
@@ -324,19 +324,25 @@ Copy the bigger assembly from the `Share` folder to the same output folder as me
 # export STUDY="WWTP"
 # export STUDY="Tundra"
 
-cp ~/Share/${STUDY}/aassembly/* 04_ASSEMBLY/
+cp ~/Share/${STUDY}/aassembly/* 06_ASSEMBLY/
 
-mkdir 06_ASSEMBLY_QC
+mkdir 07_ASSEMBLY_QC
 ```
 
 For assembly QC we will use the metagenomic version of Quality Assessment Tool for Genome Assemblies, [Quast](http://quast.sourceforge.net/) for evaluating (and comparing) our assemblies.
 
 ```bash
 conda activate quast
-metaquast.py 04_ASSEMBLY/*.fasta \
-      --output-dir 06_ASSEMBLY_QC \
+metaquast.py 06_ASSEMBLY/*.fasta \
+      --output-dir 07_ASSEMBLY_QC \
       --max-ref-number 0 \
       --fast \
       --threads 4
 ```
 
+## Genome-resolved metagenomics with anvi'o
+
+´´´bash
+mkdir 08_ANVIO
+conda activate anvio
+```

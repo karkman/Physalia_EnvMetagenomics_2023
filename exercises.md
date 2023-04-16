@@ -291,6 +291,9 @@ The idea here is to:
 Hopefully you will be able to learn a bit about these metagenomic datasets.  
 And realise that there is so much that still remains unknown...
 
+If you don't have R or aare not able to install packages yourself, we have prepared a virtual Rstudio for you with example data.  
+Just click this --> [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/karkman/binder_rstudio/main?urlpath=rstudio)
+
 ## Metagenomic assembly
 
 

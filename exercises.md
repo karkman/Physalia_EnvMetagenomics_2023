@@ -275,7 +275,7 @@ sourmash tax metagenome -g 05_TAXONOMIC_PROFILE/*.gather.csv \
                         --rank genus
 ```
 
-## Visualizing the taxonomic profiles:  
+## Visualizing the taxonomic profiles
 
 Now that we have got our hands into some tables describing the abundance of the different taxa in our metagenome, it is time to make sense of the data.  
 One way to do this is making summaries, plots, statistical tests, etc, as you would normally do for any kind of species distribution data.  
@@ -342,7 +342,17 @@ metaquast.py 06_ASSEMBLY/*.fasta \
 
 ## Genome-resolved metagenomics with anvi'o
 
-´´´bash
+```bash
 mkdir 08_ANVIO
 conda activate anvio
 ```
+
+### Contigs database and annotations
+
+### Mapping Illumina reads back to assembly
+
+### Profiling 
+
+### Visualization
+
+### Metagenomic binninng

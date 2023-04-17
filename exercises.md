@@ -14,6 +14,8 @@
    2. [sourmash](#sourmash)
    3. [Visualizing the taxonomic profiles:](#visualizing-the-taxonomic-profiles)
 5. [Metagenome assembly](#metagenome-assembly)
+   1. [Assembly QC](#assembly-qc)
+6. [Genome-resolved metagenomics with anvi'o](#genome-resolved-metagenomics-with-anvio)
 
 ## Setting up the cloud computing
 

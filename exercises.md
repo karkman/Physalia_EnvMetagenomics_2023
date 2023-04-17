@@ -300,45 +300,50 @@ Just click this: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybind
 
 ## Metagenome assembly
 
+Now it's time to move forward to metagenome assembly.  
+First let's create a folder where the assembly will go:  
+
 ```bash
 cd ~/Physalia_EnvMetagenomics_2023
 mkdir 06_ASSEMBLY
 ```
 
-For metagenomic assembly of our Nanopore data we will use [Flye](https://github.com/fenderglass/Flye). Flye is a long-read de novo assembler that handles also metagenomic data.  
+For the assembly of our Nanopore data we will use [Flye](https://github.com/fenderglass/Flye).  
+`Flye` is a long-read de novo assembler that can also handle metagenomic data.  
 
-Before you start the assembly, have a look at the [Flye manual](https://github.com/fenderglass/Flye/blob/flye/docs/USAGE.md), escpecially the parts about Nanopore data and metagenome assembly.
+Before you start the assembly, have a look at the [Flye manual](https://github.com/fenderglass/Flye/blob/flye/docs/USAGE.md), especially the parts about Nanopore data and metagenome assembly.  
 
 __What options do we need?__  
-We have only given the output directory in the script below.
+We have only given the output directory in the script below; modify it as necessary and run `Flye`:  
 
 ```bash 
 conda activate flye
 
 flye  ... \
       --out-dir 06_ASSEMBLY
-
-conda deactivate 
 ```
 
 ### Assembly QC
 
-The metagenomic assembly was done with heavily downsampled sequence data. But we have prepared a metagenomic assembly from a bigger set for you.  
-Copy the bigger assembly from the `Share` folder to the same output folder as metaflye output. We will run QC for both assemblies and compare the outputs.  
+For the sake of speed, the metagenomic assembly you have done above was made with heavily downsampled data.  
+We have also prepared an assembly made from the original (not downsampled) data, which will be the assembly you will actually use downstream.  
+So let's copy this bigger assembly from the `Share` folder to the `Flye` output folder.  
+We will run QC for both assemblies and compare the outputs.  
 
 ```bash
 # export STUDY="WWTP"
 # export STUDY="Tundra"
 
-cp ~/Share/${STUDY}/aassembly/* 06_ASSEMBLY/
-
-mkdir 07_ASSEMBLY_QC
+cp ~/Share/${STUDY}/assembly/* 06_ASSEMBLY
 ```
 
 For assembly QC we will use the metagenomic version of Quality Assessment Tool for Genome Assemblies, [Quast](http://quast.sourceforge.net/) for evaluating (and comparing) our assemblies.
 
 ```bash
+mkdir 07_ASSEMBLY_QC
+
 conda activate quast
+
 metaquast.py 06_ASSEMBLY/*.fasta \
       --output-dir 07_ASSEMBLY_QC \
       --max-ref-number 0 \

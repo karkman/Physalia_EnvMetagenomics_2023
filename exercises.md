@@ -12,7 +12,7 @@
 4. [Read-based taxonomic profiling](#read-based-taxonomic-profiling)
    1. [singleM](#singlem)
    2. [sourmash](#sourmash)
-   3. [Visualizing the taxonomic profiles:](#visualizing-the-taxonomic-profiles)
+   3. [Visualizing the taxonomic profiles](#visualizing-the-taxonomic-profiles)
 5. [Metagenome assembly](#metagenome-assembly)
    1. [Assembly QC](#assembly-qc)
 6. [Genome-resolved metagenomics with anvi'o](#genome-resolved-metagenomics-with-anvio)
@@ -141,6 +141,8 @@ We will go through the report together before continuing with the pre-processing
 
 ### Read trimming
 
+Our QC reports tell us that a significant percentage of the raw sequences contain some isses such as the presence of adapters.  
+Before proceeding, it is necessary to clean up/trim the raw sequences.  
 Before start trimming the data, let's create a folder for the processed data and activate the `conda` environment:  
 
 ```bash
@@ -165,13 +167,13 @@ for sample in $(cat SAMPLES.txt); do
 done
 ```
 
-Looking at the [online manual](https://cutadapt.readthedocs.io/en/stable/index.html) for `Cutadapt` or running `cutadapt --help`, answer:  
+While `Cutadapt` is running: looking at the [online manual](https://cutadapt.readthedocs.io/en/stable/index.html) or running `cutadapt --help`, answer:  
 
 - What do the `-o`, `-p`, `-a`, `-A`, `m`, `-q`, and `-j` flags mean?  
 - How did we choose the values for `-m` and `-q`?  
 - What is the purpose of the redirection (`> 03_TRIMMED/${sample}.illumina.log`)?  
 
-And for the Nanopore data:  
+And now we trim the Nanopore data:  
 
 ```bash
 gunzip -c 01_DATA/nanopore.fastq.gz | chopper -q 10 -l 1000 -t 4 | gzip > 03_TRIMMED/nanopore.fastq.gz
@@ -180,7 +182,7 @@ gunzip -c 01_DATA/nanopore.fastq.gz | chopper -q 10 -l 1000 -t 4 | gzip > 03_TRI
 ### QC of the trimmed data
 
 Now the data has been trimmed, it would be a good idea to run `FastQC` and `MultiQC` again.  
-Modify the commands used for the raw data to match the trimmed data and run them.  
+Modify the [commands used for the raw data](#qc-of-the-raw-data) to match the trimmed data and run the two QC softwares.  
 
 While you wait, take a look at the `Cutadapt` logs.  
 When `Cutadapt` runs, it prints lots of interesting information to the screen, which we lose once we logout of the remote machine.  
@@ -188,7 +190,7 @@ Because we used redirection (`>`) to capture the standard output (`stdout`) of `
 Take a look at the log file for one of the samples using the program `less`:  
 
 **NOTE:** You can scroll up and down using the arrow keys on your keyboard, or move one "page" at a time using the spacebar.  
-**NOTE:** To quit `less`, hit the `q` key.
+**NOTE:** To quit `less`, hit the `q` key.  
 **NOTE:** If you have set it up, you can also access the files using the `Explorer` tab on `VS Code` (`View -> Explorer`).  
 
 By looking at the `Cutadapt` log, can you answer:  
@@ -291,7 +293,10 @@ The idea here is to:
 - Learn what fraction of the community we were actually able to identify at, let's say, the genus level  
 
 Hopefully you will be able to learn a bit about these metagenomic datasets.  
-And realise that there is so much that still remains unknown...
+And realise that there is so much that still remains unknown...  
+
+If you don't have R installed or can't install packages yourself, we have prepared a virtual Rstudio for you with example data.  
+Just click this: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/karkman/binder_rstudio/main?urlpath=rstudio)
 
 ## Metagenome assembly
 
@@ -343,7 +348,17 @@ metaquast.py 06_ASSEMBLY/*.fasta \
 
 ## Genome-resolved metagenomics with anvi'o
 
-´´´bash
+```bash
 mkdir 08_ANVIO
 conda activate anvio
 ```
+
+### Contigs database and annotations
+
+### Mapping Illumina reads back to assembly
+
+### Profiling 
+
+### Visualization
+
+### Metagenomic binninng

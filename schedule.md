@@ -21,12 +21,12 @@
 
 ## Tuesday 18.04.23
 
-|Time     |Activity|Link|
-|---------|--------|----|
-|Morning  |Questions from the previous day|[Flinga](https://flinga.fi/s/FFQ5876) |
-|Morning  |Metagenomic assembly |[Slides](Lectures/Assembly-and-QC.pdf) / [Hands-on](exercises.md#metagenomic-assembly)|
-|Afternoon|Assembly QC |[Hands-on](exercises.md#assembly-qc)|
-|Afternoon|Taxonomic profiles in R |[Hands-on](exercises.md#taxonomic-profiles-in-r)|
+|Time     |Activity                               |Link                                                                                 |
+|---------|---------------------------------------|-------------------------------------------------------------------------------------|
+|Morning  |Questions from the previous day        |[Flinga](https://flinga.fi/s/FFQ5876)                                                |
+|Morning  |Metagenome assembly                    |[Slides](Lectures/Assembly-and-QC.pdf) / [Hands-on](exercises.md#metagenome-assembly)|
+|Afternoon|Assembly QC                            |[Hands-on](exercises.md#assembly-qc)                                                 |
+|Afternoon|Read-based taxonomic profiling (cont.) |[Hands-on](exercises.md#visualizing-the-taxonomic-profiles)                          |
 
 ## Wednesday 19.04.23
 

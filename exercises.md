@@ -1,22 +1,19 @@
 # Exercises
 
-1. [Exercises](#exercises)
-   1. [Setting up the cloud computing](#setting-up-the-cloud-computing)
-      1. [Setting up VS Code](#setting-up-vs-code)
-      2. [Connecting to the remote machine with VS Code](#connecting-to-the-remote-machine-with-vs-code)
-      3. [Cloning the course's GitHub repository](#cloning-the-courses-github-repository)
-   2. [Getting the raw data](#getting-the-raw-data)
-   3. [QC and trimming](#qc-and-trimming)
-      1. [QC of the raw data](#qc-of-the-raw-data)
-      2. [Read trimming](#read-trimming)
-      3. [QC of the trimmed data](#qc-of-the-trimmed-data)
-   4. [Read-based taxonomic profiling](#read-based-taxonomic-profiling)
-      1. [singleM](#singlem)
-      2. [sourmash](#sourmash)
-      3. [Visualizing the taxonomic profiles](#visualizing-the-taxonomic-profiles)
-   5. [Metagenomic assembly](#metagenomic-assembly)
-   6. [Assembly QC](#assembly-qc)
-   7. [Genome-resolved metagenomics with anvi'o](#genome-resolved-metagenomics-with-anvio)
+1. [Setting up the cloud computing](#setting-up-the-cloud-computing)
+   1. [Setting up VS Code](#setting-up-vs-code)
+   2. [Connecting to the remote machine with VS Code](#connecting-to-the-remote-machine-with-vs-code)
+   3. [Cloning the course's GitHub repository](#cloning-the-courses-github-repository)
+2. [Getting the raw data](#getting-the-raw-data)
+3. [QC and trimming](#qc-and-trimming)
+   1. [QC of the raw data](#qc-of-the-raw-data)
+   2. [Read trimming](#read-trimming)
+   3. [QC of the trimmed data](#qc-of-the-trimmed-data)
+4. [Read-based taxonomic profiling](#read-based-taxonomic-profiling)
+   1. [singleM](#singlem)
+   2. [sourmash](#sourmash)
+   3. [Visualizing the taxonomic profiles:](#visualizing-the-taxonomic-profiles)
+5. [Metagenome assembly](#metagenome-assembly)
 
 ## Setting up the cloud computing
 
@@ -278,7 +275,7 @@ sourmash tax metagenome -g 05_TAXONOMIC_PROFILE/*.gather.csv \
                         --rank genus
 ```
 
-## Visualizing the taxonomic profiles
+### Visualizing the taxonomic profiles  
 
 Now that we have got our hands into some tables describing the abundance of the different taxa in our metagenome, it is time to make sense of the data.  
 One way to do this is making summaries, plots, statistical tests, etc, as you would normally do for any kind of species distribution data.  
@@ -294,11 +291,7 @@ The idea here is to:
 Hopefully you will be able to learn a bit about these metagenomic datasets.  
 And realise that there is so much that still remains unknown...
 
-If you don't have R installed or can't install packages yourself, we have prepared a virtual Rstudio for you with example data.  
-Just click this --> [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/karkman/binder_rstudio/main?urlpath=rstudio)
-
-## Metagenomic assembly
-
+## Metagenome assembly
 
 ```bash
 cd ~/Physalia_EnvMetagenomics_2023
@@ -321,7 +314,7 @@ flye  ... \
 conda deactivate 
 ```
 
-## Assembly QC
+### Assembly QC
 
 The metagenomic assembly was done with heavily downsampled sequence data. But we have prepared a metagenomic assembly from a bigger set for you.  
 Copy the bigger assembly from the `Share` folder to the same output folder as metaflye output. We will run QC for both assemblies and compare the outputs.  
@@ -348,17 +341,7 @@ metaquast.py 06_ASSEMBLY/*.fasta \
 
 ## Genome-resolved metagenomics with anvi'o
 
-```bash
+´´´bash
 mkdir 08_ANVIO
 conda activate anvio
 ```
-
-### Contigs database and annotations
-
-### Mapping Illumina reads back to assembly
-
-### Profiling 
-
-### Visualization
-
-### Metagenomic binninng

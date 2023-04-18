@@ -362,14 +362,87 @@ metaquast.py 06_ASSEMBLY/*.fasta \
 
 ## Genome-resolved metagenomics with anvi'o
 
+Anvi'o is an analysis and visualization platform for omics data. We will use anvi'o for binning contigs into metagenome-assembled genomes (MAGs).  
+You should definitely take a look at their [website](https://anvio.org/) and maybe even join their [discord channel](https://discord.gg/C6He6mSNY4).
+
 ```bash
 mkdir 08_ANVIO
 conda activate anvio
 ```
 
+### Reformat the assembly file
+
+Before creating the contigs database in anvi'o, we need to do some reformatting for our assmebly file.  
+The program removes contigs shorter than 1 000 bp and simplifyes the sequence names. 
+
+```bash
+anvi-script-reformat-fasta \
+    --min-len 1000 \
+    --simplify-names \
+    -o 08_ANVIO/contigs.fasta \
+    --report-file 08_ANVIO/reformat_report.txt \
+    06_ASSEMBLY/full_assembly.fasta
+```
+
 ### Contigs database and annotations
 
+The first step in our genome-resolved metagenomics pipeline is the contruction of contigs database from our metagenomic contigs. During this step anvi'o calls genes, calculates the nucleotide composition for each contigs and annotates the identified genes in three different steps. 
+
+Generate contigs DB
+
+```bash
+anvi-gen-contigs-database \
+    -f 08_ANVIO/contigs.fasta \
+    -o 08_ANVIO/CONTIGS.db \
+    -n FullAssembly \
+    -T 4
+```
+
+Annotate marker genes
+
+```bash
+anvi-run-hmms \
+    -c 08_ANVIO/CONTIGS.db \
+    -T 4
+```
+Annotate COGs
+```bash
+anvi-run-ncbi-cogs \
+    -c 08_ANVIO/CONTIGS.db \
+    -T 4
+```
+
+Annotate single-copy core genes
+
+```bash
+anvi-run-scg-taxonomy \
+    -c 08_ANVIO/CONTIGS.db \
+    -T 4
+```
+
 ### Mapping Illumina reads back to assembly
+
+The differential coverage for each contig is calculated by mapping sequencing reads to the assembly.  
+We will use Bowtie2 to map the short-read Illumina data to our assembly (the anvio-reformatted version of it). 
+
+```bash
+for sample in $(cat SAMPLES.txt); do
+   bowtie2 \
+        -1 03_TRIMMED/${sample}.illumina.R1.fastq.gz \
+        -2 03_TRIMMED/${sample}.illumina.R2.fastq.gz \
+        -x contigs \
+        -S 08_ANVIO/${sample}.sam \
+        --threads 4 \
+        --no-unal
+
+    samtools view -@ 4 -F 4 -bS 08_ANVIO/${sample}.sam |\
+        samtools sort -@ 4 > 08_ANVIO/${sample}.bam
+    
+    samtools index -@ 4 08_ANVIO/${sample}.bam
+    
+    rm 08_ANVIO/${sample}.sam
+done 
+```
 
 ### Profiling 
 

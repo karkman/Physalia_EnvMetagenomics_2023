@@ -357,7 +357,6 @@ conda activate quast
 metaquast.py 06_ASSEMBLY/*.fasta \
       --output-dir 07_ASSEMBLY_QC \
       --max-ref-number 0 \
-      --fast \
       --threads 4
 ```
 

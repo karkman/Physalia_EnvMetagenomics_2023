@@ -398,7 +398,7 @@ anvi-gen-contigs-database \
     -T 4
 ```
 
-Annotate marker genes
+Annotate marker genes. These are used to estimate the completeness and redundancy of bins in anvi'o. 
 
 ```bash
 anvi-run-hmms \
@@ -406,7 +406,7 @@ anvi-run-hmms \
     -T 4
 ```
 
-Annotate COGs
+Annotate COGs. This adds COG annotations to gene calls. 
 
 ```bash
 anvi-run-ncbi-cogs \
@@ -414,7 +414,7 @@ anvi-run-ncbi-cogs \
     -T 4
 ```
 
-Annotate single-copy core genes
+Annotate single-copy core genes. These are used to give bins taxonomic annotations. 
 
 ```bash
 anvi-run-scg-taxonomy \

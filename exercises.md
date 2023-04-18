@@ -274,7 +274,14 @@ sourmash gather 05_TAXONOMIC_PROFILE/nanopore.sig.zip \
 sourmash tax metagenome -g 05_TAXONOMIC_PROFILE/*.gather.csv \
                         -t ~/Share/Databases/gtdb-rs207.genomic-reps.dna.k31.zip \
                         --output-dir 05_TAXONOMIC_PROFILE \
-                        --output-base sourmash \
+                        --output-base sourmash_phylum \
+                        --output-form lineage_summary \
+                        --rank phylum
+
+sourmash tax metagenome -g 05_TAXONOMIC_PROFILE/*.gather.csv \
+                        -t ~/Share/Databases/gtdb-rs207.genomic-reps.dna.k31.zip \
+                        --output-dir 05_TAXONOMIC_PROFILE \
+                        --output-base sourmash_genus \
                         --output-form lineage_summary \
                         --rank genus
 ```

@@ -543,13 +543,36 @@ SemiBin2 uses self-supervised learning and has some pre-trained models, which ma
 
 ```bash
 cd ~/Physalia_EnvMetagenomics_2023
-mkdir XX_SemiBin
+mkdir XX_SEMIBIN
 ```
+
+Depending on the data you're analysing choose either
+
+__WWTP:__
+
+```bash
+export environment=wastewater
+export sample=Sample3
+```
+
+__Tundra:__
+
+```bash
+export environment=soil
+export sample=XX
+```
+
+Run SemiBin
 
 ```bash
 conda activate SemiBin
 
+
 SemiBin single_easy_bin \
-
+        --input-fasta 08_ANVIO/contigs.fasta \
+        --input-bam 08_ANVIO/${sample}.bam \
+        --sequencing-type=long_read \
+        -o XX_SEMIBIN \
+        --environment $environment \
+        --threads 4
 ```
-

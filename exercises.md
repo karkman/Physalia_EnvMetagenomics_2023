@@ -326,8 +326,11 @@ We have only given the output directory in the script below; modify it as necess
 ```bash 
 conda activate flye
 
-flye  ... \
-      --out-dir 06_ASSEMBLY
+flye \
+   --nano-raw 03_TRIMMED/nanopore.fastq.gz \
+   --meta \
+   -t 4 \  
+   --out-dir 06_ASSEMBLY
 ```
 
 ### Assembly QC

@@ -373,7 +373,7 @@ conda activate anvio
 ### Reformat the assembly file
 
 Before creating the contigs database in anvi'o, we need to do some reformatting for our assmebly file.  
-The program removes contigs shorter than 1 000 bp and simplifyes the sequence names. 
+The program removes contigs shorter than 1 000 bp and simplifyes the sequence names.
 
 ```bash
 anvi-script-reformat-fasta \
@@ -386,9 +386,9 @@ anvi-script-reformat-fasta \
 
 ### Contigs database and annotations
 
-The first step in our genome-resolved metagenomics pipeline is the contruction of contigs database from our metagenomic contigs. During this step anvi'o calls genes, calculates the nucleotide composition for each contigs and annotates the identified genes in three different steps. 
+The first step in our genome-resolved metagenomics pipeline is the contruction of contigs database from our metagenomic contigs. During this step anvi'o calls genes, calculates the nucleotide composition for each contigs and annotates the identified genes in three different steps.
 
-Generate contigs DB
+Generate contigs database
 
 ```bash
 anvi-gen-contigs-database \
@@ -405,7 +405,9 @@ anvi-run-hmms \
     -c 08_ANVIO/CONTIGS.db \
     -T 4
 ```
+
 Annotate COGs
+
 ```bash
 anvi-run-ncbi-cogs \
     -c 08_ANVIO/CONTIGS.db \
@@ -423,7 +425,7 @@ anvi-run-scg-taxonomy \
 ### Mapping Illumina reads back to assembly
 
 The differential coverage for each contig is calculated by mapping sequencing reads to the assembly.  
-We will use Bowtie2 to map the short-read Illumina data to our assembly (the anvio-reformatted version of it). 
+We will use Bowtie2 to map the short-read Illumina data to our assembly (the anvio-reformatted version of it).
 
 ```bash
 for sample in $(cat SAMPLES.txt); do
@@ -435,17 +437,95 @@ for sample in $(cat SAMPLES.txt); do
         --threads 4 \
         --no-unal
 
-    samtools view -@ 4 -F 4 -bS 08_ANVIO/${sample}.sam |\
-        samtools sort -@ 4 > 08_ANVIO/${sample}.bam
+   samtools view -@ 4 -F 4 -bS 08_ANVIO/${sample}.sam |\
+      samtools sort -@ 4 > 08_ANVIO/${sample}.bam
     
-    samtools index -@ 4 08_ANVIO/${sample}.bam
+   samtools index -@ 4 08_ANVIO/${sample}.bam
     
-    rm 08_ANVIO/${sample}.sam
+   rm 08_ANVIO/${sample}.sam
 done 
 ```
 
-### Profiling 
+### Profiling
+
+When the contigs database and all three mappings are ready, we can make the profile databases for each sample.
+
+```bash
+for sample in $(cat SAMPLES.txt); do
+   anvi-profile \
+        -i 08_ANVIO/${sample}.bam \
+        -c 08_ANVIO/CONTIGS.db \
+        -S ${sample} \
+        --min-contig-length 5000 \
+        -o 08_ANVIO/${sample}_PROFILE \
+        -T 4
+done
+```
+
+And finally merge the individual profiles
+
+```bash
+anvi-merge \
+   -o 08_ANVIO/SAMPLES-MERGED \
+   -c 08_ANVIO/CONTIGS.db \
+   --enforce-hierarchical-clustering \
+   08_ANVIO/*_PROFILE/PROFILE.db 
+```
 
 ### Visualization
 
+Now we have all the files ready for anvi'o and we can visualize the results in anvi'o interactive view.
+We will go thru the first steps together.  
+
+Your port number will be 8080 + your user number (user1 == 1 == 8081).
+
+```bash
+export $ANVIOPORT=
+```
+
+Then you can launch the interactive interface with the following command.
+
+```bash
+anvi-interactive \
+    -c 08_ANVIO/CONTIGS.db \
+    -p 08_ANVIO/SAMPLES-MERGED/PROFILE.db \
+    --server-only \
+    --port-number $ANVIOPORT
+```
+
 ### Metagenomic binninng
+
+After making the pre-clustering, start refining the clusters.
+
+```bash
+anvi-refine \
+    -c 08_ANVIO/CONTIGS.db \
+    -p 08_ANVIO/SAMPLES-MERGED/PROFILE.db \
+    --server-only \
+    --port-number $ANVIOPORT \
+    --collection-name PreCluster \
+    --bin-id Bin_1
+```
+
+When all cluster have been refined a bit more, we can make a new collection from these.
+
+```bash
+anvi-rename-bins \
+    -c 08_ANVIO/CONTIGS.db \
+    -p 08_ANVIO/SAMPLES-MERGED/PROFILE.db \
+    --collection-to-read PreCluster \
+    --collection-to-write PreBins \
+    --prefix Preliminary \
+    --report-file 08_ANVIO/PreBin_report.txt
+```
+
+And then we can make a summary of the cluster or bins we have so far.
+
+```bash
+anvi-summarize \
+    -c 08_ANVIO/CONTIGS.db \
+    -p 08_ANVIO/SAMPLES-MERGED/PROFILE.db \
+    --collection-name PreBins \
+    --output-dir 08_ANVIO/PreBins_SUMMARY \
+    --quick-summary
+```

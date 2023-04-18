@@ -245,7 +245,7 @@ singlem pipe --sequences 03_TRIMMED/nanopore.fastq.gz \
 And now `sourmash`:  
 
 ```bash
-conda activate sourmash
+conda activate sourmash-4.6.1
 
 # Illumina data
 for sample in $(cat SAMPLES.txt); do
@@ -274,14 +274,14 @@ sourmash gather 05_TAXONOMIC_PROFILE/nanopore.sig.zip \
 sourmash tax metagenome -g 05_TAXONOMIC_PROFILE/*.gather.csv \
                         -t ~/Share/Databases/gtdb-rs207.taxonomy.with-strain.csv.gz \
                         --output-dir 05_TAXONOMIC_PROFILE \
-                        --output-base sourmash_phylum \
+                        --output-base sourmash.phylum \
                         --output-form lineage_summary \
                         --rank phylum
 
 sourmash tax metagenome -g 05_TAXONOMIC_PROFILE/*.gather.csv \
                         -t ~/Share/Databases/gtdb-rs207.taxonomy.with-strain.csv.gz \
                         --output-dir 05_TAXONOMIC_PROFILE \
-                        --output-base sourmash_genus \
+                        --output-base sourmash.genus \
                         --output-form lineage_summary \
                         --rank genus
 ```

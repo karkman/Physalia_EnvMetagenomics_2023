@@ -414,7 +414,7 @@ anvi-run-ncbi-cogs \
     -T 4
 ```
 
-Annotate single-copy core genes. These are used to give bins taxonomic annotations. 
+Annotate single-copy core genes. These are used for taxonomic annotations of bins. 
 
 ```bash
 anvi-run-scg-taxonomy \

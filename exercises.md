@@ -366,8 +366,8 @@ Anvi'o is an analysis and visualization platform for omics data. We will use anv
 You should definitely take a look at their [website](https://anvio.org/) and maybe even join their [discord channel](https://discord.gg/C6He6mSNY4).
 
 ```bash
+cd ~/Physalia_EnvMetagenomics_2023
 mkdir 08_ANVIO
-conda activate anvio
 ```
 
 ### Reformat the assembly file
@@ -376,6 +376,8 @@ Before creating the contigs database in anvi'o, we need to do some reformatting 
 The program removes contigs shorter than 1 000 bp and simplifyes the sequence names.
 
 ```bash
+conda activate anvio
+
 anvi-script-reformat-fasta \
     --min-len 1000 \
     --simplify-names \
@@ -428,6 +430,8 @@ The differential coverage for each contig is calculated by mapping sequencing re
 We will use Bowtie2 to map the short-read Illumina data to our assembly (the anvio-reformatted version of it).
 
 ```bash
+bowtie2-build -threads 4 08_ANVIO/contigs.fasta 08_ANVIO/contigs
+
 for sample in $(cat SAMPLES.txt); do
    bowtie2 \
         -1 03_TRIMMED/${sample}.illumina.R1.fastq.gz \
@@ -529,3 +533,23 @@ anvi-summarize \
     --output-dir 08_ANVIO/PreBins_SUMMARY \
     --quick-summary
 ```
+
+## Automatic binning with SemiBin2
+
+SemiBin2 is one of the several automatic binning algorithms published. Whether is good, better than others or the worst one available, you have to judge yourself.  
+If you want learn more, there is a [pre-print available](https://www.biorxiv.org/content/10.1101/2023.01.09.523201v1.full). More practical reading can be found from the documentation: [https://semibin.readthedocs.io/en/latest/](https://semibin.readthedocs.io/en/latest/).  
+
+SemiBin2 uses self-supervised learning and has some pre-trained models, which makes to computation faster. It requires as input the results from mapping reads back to assembly (sorted and indexed bam files, which we already have) and the assembly (which we also have).
+
+```bash
+cd ~/Physalia_EnvMetagenomics_2023
+mkdir XX_SemiBin
+```
+
+```bash
+conda activate SemiBin
+
+SemiBin single_easy_bin \
+
+```
+

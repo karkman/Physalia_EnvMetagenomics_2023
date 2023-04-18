@@ -344,7 +344,7 @@ We will run QC for both assemblies and compare the outputs.
 # export STUDY="WWTP"
 # export STUDY="Tundra"
 
-cp ~/Share/${STUDY}/assembly/* 06_ASSEMBLY
+cp ~/Share/${STUDY}/full_assembly.fasta 06_ASSEMBLY
 ```
 
 For assembly QC we will use the metagenomic version of Quality Assessment Tool for Genome Assemblies, [Quast](http://quast.sourceforge.net/) for evaluating (and comparing) our assemblies.

@@ -446,7 +446,7 @@ for sample in $(cat SAMPLES.txt); do
    bowtie2 \
         -1 03_TRIMMED/${sample}.illumina.R1.fastq.gz \
         -2 03_TRIMMED/${sample}.illumina.R2.fastq.gz \
-        -x contigs \
+        -x 08_ANVIO/contigs \
         -S 08_ANVIO/${sample}.sam \
         --threads 4 \
         --no-unal

@@ -292,14 +292,14 @@ sourmash tax metagenome -g 05_TAXONOMIC_PROFILE/*.gather.csv \
                         -t ~/Share/Databases/gtdb-rs207.taxonomy.with-strain.csv.gz \
                         --output-dir 05_TAXONOMIC_PROFILE \
                         --output-base sourmash.phylum \
-                        --output-form lineage_summary \
+                        --output-format lineage_summary \
                         --rank phylum
 
 sourmash tax metagenome -g 05_TAXONOMIC_PROFILE/*.gather.csv \
                         -t ~/Share/Databases/gtdb-rs207.taxonomy.with-strain.csv.gz \
                         --output-dir 05_TAXONOMIC_PROFILE \
                         --output-base sourmash.genus \
-                        --output-form lineage_summary \
+                        --output-format lineage_summary \
                         --rank genus
 ```
 
@@ -577,7 +577,6 @@ Run SemiBin
 ```bash
 conda activate SemiBin
 
-
 SemiBin single_easy_bin \
         --input-fasta 08_ANVIO/contigs.fasta \
         --input-bam 08_ANVIO/${sample}.bam \
@@ -585,4 +584,19 @@ SemiBin single_easy_bin \
         -o XX_SEMIBIN \
         --environment $environment \
         --threads 4
+```
+
+Prepare a file for anvi'o
+
+```bash
+cd XX_SEMIBIN
+
+for file in output_bins/*.fa
+    do 
+        bin=$(basename ${file%.fa})
+        for line in $(grep ">" $file)
+        do 
+            echo -e $line"\t"$bin
+        done
+    done |sed 's/>//g'|tr "." "_"
 ```

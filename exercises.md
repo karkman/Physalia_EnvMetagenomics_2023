@@ -456,7 +456,7 @@ for sample in $(cat SAMPLES.txt); do
     
    samtools index -@ 4 08_ANVIO/${sample}.bam
     
-   rm 08_ANVIO/${sample}.sam
+   rm -f 08_ANVIO/${sample}.sam
 done 
 ```
 

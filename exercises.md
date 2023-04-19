@@ -362,8 +362,10 @@ metaquast.py 06_ASSEMBLY/*.fasta \
 
 ## Genome-resolved metagenomics with anvi'o
 
-Anvi'o is an analysis and visualization platform for omics data. We will use anvi'o for binning contigs into metagenome-assembled genomes (MAGs).  
-You should definitely take a look at their [website](https://anvio.org/) and maybe even join their [discord channel](https://discord.gg/C6He6mSNY4).
+`Anvi'o` is an analysis and visualization platform for omics data.  
+We will use `anvi'o` for binning contigs into metagenome-assembled genomes (MAGs).  
+You should definitely take a look at their [website](https://anvio.org/) and maybe even join their [discord channel](https://discord.gg/C6He6mSNY4).  
+Let's start by making a new folder for `anvi'o`:  
 
 ```bash
 cd ~/Physalia_EnvMetagenomics_2023
@@ -372,25 +374,26 @@ mkdir 08_ANVIO
 
 ### Reformat the assembly file
 
-Before creating the contigs database in anvi'o, we need to do some reformatting for our assmebly file.  
+Before creating the contigs database in `anvi'o`, we need to do some reformatting for our assmebly file.  
 The program removes contigs shorter than 1 000 bp and simplifyes the sequence names.
 
 ```bash
 conda activate anvio
 
 anvi-script-reformat-fasta \
-    --min-len 1000 \
-    --simplify-names \
+    06_ASSEMBLY/full_assembly.fasta \
     -o 08_ANVIO/contigs.fasta \
     --report-file 08_ANVIO/reformat_report.txt \
-    06_ASSEMBLY/full_assembly.fasta
+    --min-len 1000 \
+    --simplify-names
 ```
 
 ### Contigs database and annotations
 
-The first step in our genome-resolved metagenomics pipeline is the contruction of contigs database from our metagenomic contigs. During this step anvi'o calls genes, calculates the nucleotide composition for each contigs and annotates the identified genes in three different steps.
+The first step in our genome-resolved metagenomics pipeline is the contruction of contigs database from our metagenomic contigs.  
+During this step `anvi'o` calls genes, calculates the nucleotide composition for each contigs and annotates the identified genes in three different steps.
 
-Generate contigs database
+**Generate contigs database**
 
 ```bash
 anvi-gen-contigs-database \
@@ -400,7 +403,9 @@ anvi-gen-contigs-database \
     -T 4
 ```
 
-Annotate marker genes. These are used to estimate the completeness and redundancy of bins in anvi'o. 
+**Annotate marker genes**  
+
+These are used to estimate the completeness and redundancy of bins in `anvi'o`. 
 
 ```bash
 anvi-run-hmms \
@@ -408,7 +413,9 @@ anvi-run-hmms \
     -T 4
 ```
 
-Annotate COGs. This adds COG annotations to gene calls. 
+**Annotate COGs**  
+
+This adds COG annotations to gene calls. 
 
 ```bash
 anvi-run-ncbi-cogs \
@@ -416,7 +423,9 @@ anvi-run-ncbi-cogs \
     -T 4
 ```
 
-Annotate single-copy core genes. These are used for taxonomic annotations of bins. 
+**Annotate single-copy core genes**  
+
+These are used for taxonomic annotations of bins. 
 
 ```bash
 anvi-run-scg-taxonomy \

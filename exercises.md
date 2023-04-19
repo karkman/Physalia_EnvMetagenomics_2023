@@ -440,7 +440,7 @@ The differential coverage for each contig is calculated by mapping sequencing re
 We will use Bowtie2 to map the short-read Illumina data to our assembly (the anvio-reformatted version of it).
 
 ```bash
-bowtie2-build -threads 4 08_ANVIO/contigs.fasta 08_ANVIO/contigs
+bowtie2-build --threads 4 08_ANVIO/contigs.fasta 08_ANVIO/contigs
 
 for sample in $(cat SAMPLES.txt); do
    bowtie2 \

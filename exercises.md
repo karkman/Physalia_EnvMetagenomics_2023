@@ -569,7 +569,7 @@ __Tundra:__
 
 ```bash
 export environment=soil
-export sample=XX
+export sample=m12208
 ```
 
 Run SemiBin

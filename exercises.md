@@ -494,7 +494,7 @@ We will go thru the first steps together.
 Your port number will be 8080 + your user number (user1 == 1 == 8081).
 
 ```bash
-export $ANVIOPORT=
+export ANVIOPORT=
 ```
 
 Then you can launch the interactive interface with the following command.

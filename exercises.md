@@ -240,9 +240,26 @@ singlem pipe --sequences 03_TRIMMED/nanopore.fastq.gz \
              --threads 4
 ```
 
+Now that we have got our hands into some tables describing the abundance of the different taxa in our metagenome, it is time to make sense of the data.  
+One way to do this is making summaries, plots, statistical tests, etc, as you would normally do for any kind of species distribution data.  
+Here you are free to use whichever tool you are most familiar with (but we all know that there is only one co`R`rect tool for this).  
+
+The idea here is to: 
+- Learn what are the main (most abundant) taxa in our samples  
+- Learn about potential differences in community composition between the samples  
+- Learn what fraction of the community we were actually able to identify at, let's say, the genus level  
+- Compare the taxonomic profiles obtainted from Illumina and Nanopore data  
+
+Hopefully you will be able to learn a bit about these metagenomic datasets.  
+And realise that there is so much that still remains unknown...  
+
+If you don't have R installed or can't install packages yourself, we have prepared a virtual Rstudio for you with example data.  
+Just click this: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/karkman/binder_rstudio/main?urlpath=rstudio)
+
 ### sourmash
 
-And now `sourmash`:  
+There are many different appraoches for taxonomic profiling of metagenomes, each of them with their own up- and downsides.  
+Let's now try a `sourmash`:  
 
 ```bash
 conda activate sourmash-4.6.1
@@ -286,24 +303,8 @@ sourmash tax metagenome -g 05_TAXONOMIC_PROFILE/*.gather.csv \
                         --rank genus
 ```
 
-### Visualizing the taxonomic profiles  
-
-Now that we have got our hands into some tables describing the abundance of the different taxa in our metagenome, it is time to make sense of the data.  
-One way to do this is making summaries, plots, statistical tests, etc, as you would normally do for any kind of species distribution data.  
-Here you are free to use whichever tool you are most familiar with (but we all know that there is only one co`R`rect tool for this).  
-
-The idea here is to: 
-- Compare the taxonomic profiles from each different tools  
-- Compare the taxonomic profiles obtainted from Illumina and Nanopore data  
-- Learn what are the main (most abundant) taxa in our samples  
-- Learn about potential differences in community composition between the samples  
-- Learn what fraction of the community we were actually able to identify at, let's say, the genus level  
-
-Hopefully you will be able to learn a bit about these metagenomic datasets.  
-And realise that there is so much that still remains unknown...  
-
-If you don't have R installed or can't install packages yourself, we have prepared a virtual Rstudio for you with example data.  
-Just click this: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/karkman/binder_rstudio/main?urlpath=rstudio)
+Now analyse the results from `sourmash` in `R` or other data analysis tool of your preference.  
+Are there differences between the taxonomic profiles obtained by the two different tools?  
 
 ## Metagenome assembly
 

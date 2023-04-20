@@ -599,3 +599,14 @@ for file in output_bins/*.fa; do
    done
 done |sed 's/>//g' > semibin_results.txt
 ```
+
+And import the binning results to anvi'o as a new collection called `SemiBin`.
+
+```bash
+anvi-import-collection \
+   -c CONTIGS.db \
+   -p SAMPLES-MERGED/PROFILE.db \
+   -C SemiBin \
+   --contigs-mode \
+   SemiBin_out/semibin_results.txt
+```

@@ -591,12 +591,11 @@ Prepare a file for anvi'o
 ```bash
 cd XX_SEMIBIN
 
-for file in output_bins/*.fa
-    do 
-        bin=$(basename ${file%.fa})
-        for line in $(grep ">" $file)
-        do 
-            echo -e $line"\t"$bin
-        done
-    done |sed 's/>//g'|tr "." "_"
+for file in output_bins/*.fa; do 
+    for line in $(grep ">" $file); do 
+            file=$(basename ${file%.fa})
+            file=${file/./_}
+            echo -e $line"\t"${file}
+    done
+done |sed 's/>//g' > semibin_results.txt
 ```

@@ -544,6 +544,91 @@ anvi-summarize \
     --quick-summary
 ```
 
+The last step in anvi'o is to make a final collection and summarize that final collection.  
+To make the rename part universal, store the name of your most recent collection in env variable `$COLLECTION`.
+
+```bash
+export COLLECTION=YOUR_MOST_RECENT_COLLECTION
+```
+
+Then run the renaming.  
+
+```bash
+anvi-rename-bins \
+    -c 08_ANVIO/CONTIGS.db \
+    -p 08_ANVIO/SAMPLES-MERGED/PROFILE.db \
+    --collection-to-read $COLLECTION \
+    --collection-to-write Final \
+    --prefix $USER \
+    --report-file 08_ANVIO/Final_report.txt
+```
+
+And then we can make a summary of the final bins.
+
+```bash
+anvi-summarize \
+    -c 08_ANVIO/CONTIGS.db \
+    -p 08_ANVIO/SAMPLES-MERGED/PROFILE.db \
+    --collection-name Final \
+    --output-dir 08_ANVIO/SUMMARY_Final
+```
+
+## Quality control and taxonomic annotation of metagenome-assembled genomes (MAGs)
+
+Now we have obtained some bins that we think could represent genomes present in our samples. Next steps are QC and taxonomic annotation of our genomes.  
+
+We will use a program called [checkM2](https://github.com/chklovski/CheckM2) to get more precise estimates of the completeness and redundancy of these genomes.  
+
+For taxonomic annotation we will use Genome Taxonomy Database ([GTDB](https://gtdb.ecogenomic.org/)) and a tool called [GTDB-Tk](https://ecogenomics.github.io/GTDBTk/installing/index.html#installing-gtdbtk-reference-data) for this.
+
+But before we can do these steps, we need to copy the most interesting genomes to a separate folder.
+
+First make text file called: `Final_genomes.txt` in the `08_ANVIO` folder that has the names of the bins that you want to work further (max. 10).  
+Mine would look like this:
+
+```bash
+ubuntu_Bin_00001
+ubuntu_Bin_00002
+ubuntu_Bin_00003
+ubuntu_Bin_00004
+ubuntu_Bin_00005
+```
+
+Then we'll make a new folder for these genomes and copy each genome fasta file there from the anvi'o summary folder (`SUMMARY_Final`).  
+
+```bash 
+mkdir 09_GENOMES
+
+for bin in $(cat 08_ANVIO/Final_genomes.txt); do
+    cp 08_ANVIO/SUMMARY_Final/bin_by_bin/${bin}/${bin}-contigs.fa 09_GENOMES/
+done
+```
+
+Now you should have one fasta file per genome you selected in folder `09_GENOMES`. 
+
+### checkM2
+
+```bash
+checkm2 predict \
+      --input 09_GENOMES \
+      --output-directory 09_GENOMES/checkM2 \
+      -x fa \
+      --threads 4 
+```
+
+### GTDB-tk
+
+```bash 
+gtdbtk classify_wf \
+      --genome_dir 09_GENOMES \
+      --out_dir 09_GENOMES/GTDB \
+      -x fa \
+      --cpus 4 \
+      --skip_ani_screen
+```
+
+
+
 ## Automatic binning with SemiBin2
 
 SemiBin2 is one of the several automatic binning algorithms published. Whether is good, better than others or the worst one available, you have to judge yourself.  
@@ -553,7 +638,7 @@ SemiBin2 uses self-supervised learning and has some pre-trained models, which ma
 
 ```bash
 cd ~/Physalia_EnvMetagenomics_2023
-mkdir XX_SEMIBIN
+mkdir 10_SEMIBIN
 ```
 
 Depending on the data you're analysing choose either

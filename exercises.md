@@ -628,8 +628,6 @@ gtdbtk classify_wf \
       --skip_ani_screen
 ```
 
-
-
 ## Automatic binning with SemiBin2
 
 SemiBin2 is one of the several automatic binning algorithms published. Whether is good, better than others or the worst one available, you have to judge yourself.  
@@ -642,7 +640,7 @@ cd ~/Physalia_EnvMetagenomics_2023
 mkdir 10_SEMIBIN
 ```
 
-Depending on the data you're analysing choose either
+Depending on the data you're analysing run the right code block below.  
 
 __WWTP:__
 
@@ -666,8 +664,8 @@ conda activate SemiBin
 SemiBin single_easy_bin \
         --input-fasta 08_ANVIO/contigs.fasta \
         --input-bam 08_ANVIO/${sample}.bam \
-        --sequencing-type=long_read \
-        -o XX_SEMIBIN \
+        --sequencing-type=short_read \
+        -o 10_SEMIBIN \
         --environment $environment \
         --threads 4
 ```
@@ -675,7 +673,7 @@ SemiBin single_easy_bin \
 Prepare a file for anvi'o
 
 ```bash
-cd XX_SEMIBIN
+cd 10_SEMIBIN
 
 for file in output_bins/*.fa; do 
    for line in $(grep ">" $file); do 
@@ -689,10 +687,27 @@ done |sed 's/>//g' > semibin_results.txt
 And import the binning results to anvi'o as a new collection called `SemiBin`.
 
 ```bash
+cd ~/Physalia_EnvMetagenomics_2023 
+
 anvi-import-collection \
-   -c CONTIGS.db \
-   -p SAMPLES-MERGED/PROFILE.db \
+   -c 08_ANVIO/CONTIGS.db \
+   -p 08_ANVIO/SAMPLES-MERGED/PROFILE.db \
    -C SemiBin \
    --contigs-mode \
-   SemiBin_out/semibin_results.txt
+   10_SEMIBIN/semibin_results.txt
 ```
+
+Visualize the binning results in anvi'o. Remember to define the right port.
+
+```bash 
+conda activate anvio
+export ANVIOPORT=
+
+anvi-interactive \
+    -c 08_ANVIO/CONTIGS.db \
+    -p 08_ANVIO/SAMPLES-MERGED/PROFILE.db \
+    --server-only \
+    --port-number $ANVIOPORT
+```
+
+And when anvi'o is running, you can load the SemiBin collection under `Bins` and `Load bins collection`.

@@ -592,10 +592,10 @@ Prepare a file for anvi'o
 cd XX_SEMIBIN
 
 for file in output_bins/*.fa; do 
-    for line in $(grep ">" $file); do 
-            file=$(basename ${file%.fa})
-            file=${file/./_}
-            echo -e $line"\t"${file}
-    done
+   for line in $(grep ">" $file); do 
+      file=$(basename ${file%.fa})
+      file=${file/./_}
+      echo -e $line"\t"${file}
+   done
 done |sed 's/>//g' > semibin_results.txt
 ```

@@ -16,7 +16,7 @@
 5. [Metagenome assembly](#metagenome-assembly)
    1. [Assembly QC](#assembly-qc)
 6. [Genome-resolved metagenomics with anvi'o](#genome-resolved-metagenomics-with-anvio)
-7. [Quality control and taxonomic annotation of metagenome-assembled genomes (MAGs)Quality control and taxonomic annotation of metagenome-assembled genomes (MAGs)](#quality-control-and-taxonomic-annotation-of-metagenome-assembled-genomes-mags)
+7. [Quality control and taxonomic annotation of metagenome-assembled genomes (MAGs)](#quality-control-and-taxonomic-annotation-of-metagenome-assembled-genomes-mags)
 8. [Automatic binning with SemiBin2](#automatic-binning-with-semibin2)
 
 ## Setting up the cloud computing

@@ -44,7 +44,7 @@
 |---------|--------|----|
 |Morning  |Questions from the previous day||
 |Morning|Genome-resolved metagenomics with anvi'o (cont.) |[Slides](Lectures/genome-resolved-metagenomics.pdf) / [Hands-on](exercises.md#genome-resolved-metagenomics-with-anvio)|
-|Afternoon|Read-based taxonomic profiling (cont.)           |[Slides](Lectures/read-based-taxonomic-profiling.pdf) / [Hands-on](exercises.md#read-based-taxonomic-profiling)       |
+|Afternoon|Read-based taxonomic profiling            |[Slides](Lectures/read-based-taxonomic-profiling.pdf) / [Hands-on](exercises.md#read-based-taxonomic-profiling)       |
 
 
 ## Friday 21.04.23

@@ -51,5 +51,5 @@
 
 |Time     |Activity|Link|
 |---------|--------|----|
-|Morning  |Questions from the previous day||
+|Morning  |Questions from the previous day|[Flinga](https://flinga.fi/s/F6THBW8)|
 |Afternoon|||

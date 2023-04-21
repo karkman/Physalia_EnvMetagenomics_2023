@@ -12,12 +12,12 @@
 4. [Read-based taxonomic profiling](#read-based-taxonomic-profiling)
    1. [singleM](#singlem)
    2. [sourmash](#sourmash)
-   3. [Visualizing the taxonomic profiles](#visualizing-the-taxonomic-profiles)
 5. [Metagenome assembly](#metagenome-assembly)
    1. [Assembly QC](#assembly-qc)
 6. [Genome-resolved metagenomics with anvi'o](#genome-resolved-metagenomics-with-anvio)
 7. [Quality control and taxonomic annotation of metagenome-assembled genomes (MAGs)](#quality-control-and-taxonomic-annotation-of-metagenome-assembled-genomes-mags)
 8. [Automatic binning with SemiBin2](#automatic-binning-with-semibin2)
+9. [Targeted functional analysis of MAGs](#targeted-functional-analysis-of-mags)
 
 ## Setting up the cloud computing
 
@@ -716,3 +716,5 @@ anvi-interactive \
 ```
 
 And when anvi'o is running, you can load the SemiBin collection under `Bins` and `Load bins collection`.
+
+## Targeted functional analysis of MAGs

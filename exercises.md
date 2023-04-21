@@ -718,3 +718,84 @@ anvi-interactive \
 And when anvi'o is running, you can load the SemiBin collection under `Bins` and `Load bins collection`.
 
 ## Targeted functional analysis of MAGs
+
+There are several approaches we can take to annotate our MAGs and find, for example, which kind of metabolic pathways they encode.  
+At this we point, we stop doing metagenomics and start doing genomics, so in one way we have reached the end of our workshop.  
+Everything you do next, depends a lot on what are you trying to use metagenomics for.  
+Below we give some examples of how you can annotate in MAGs in `anvi'o`.  
+
+### Broad-scale annotation
+
+Here we can use three databases/approaches that `anvi'o` offers us to annotate our contigs/MAGs.  
+
+* [COG](https://www.ncbi.nlm.nih.gov/research/cog)  
+* [KEGG](https://www.genome.jp/kegg/kegg2.html)
+* [Pfam](http://pfam.xfam.org)
+
+We have annotated our contigs using the COG database when we are preparing our files for `anvi'o`.  
+Unfortunately annotating against KEGG and Pfam would take a lot of time, so we won't do them now.  
+But below are examples on how you could do this:   
+
+```bash
+conda activate anvio
+
+# Annotate against COG
+anvi-run-ncbi-cogs -c 08_ANVIO/CONTIGS.db -T 4
+
+# Annotate against KEGG
+anvi-run-kegg-kofams -c 08_ANVIO/CONTIGS.db -T 4
+
+# Annotate against Pfam
+anvi-run-pfams -c 08_ANVIO/CONTIGS.db -T 4
+```
+
+And to export the annotations we could do:  
+
+```bash
+anvi-export-functions -c 08_ANVIO/CONTIGS.db -o 08_ANVIO/annotation.txt
+```
+
+Or even better, we can summarise our collection again:  
+
+```bash
+anvi-summarize \
+    -c 08_ANVIO/CONTIGS.db \
+    -p 08_ANVIO/SAMPLES-MERGED/PROFILE.db \
+    --collection-name Final \
+    --output-dir 08_ANVIO/SUMMARY_Final_with_annotation
+```
+
+And look at the annotation for each of our individual MAGs/bins.  
+
+### Looking for specific genes with HMMs
+
+Another approach we can use in `anvi'o` is to run HMMs specifically for gene(s) of interest.  
+In this example we will search for the [mcrA](https://www.genome.jp/dbget-bin/www_bget?K00399+K00400+K00401+K00402+K03421+K03422+2.8.4.1+R04541) gene, which is the key gene for methanogenesis.  
+
+```bash
+conda activate anvio
+
+# Run HMMs
+anvi-run-hmms -c 08_ANVIO/CONTIGS.db --hmm-profile-dir ~/Share/Databases/mcrA_HMM -T 4
+```
+
+And to export the annotation we could do:  
+
+```bash
+anvi-script-get-hmm-hits-per-gene-call -c 08_ANVIO/CONTIGS.db --hmm-source mcrA_HMM -o 08_ANVIO/mcrA_HMM.txt
+```
+
+Or even better, we can summarise our collection again:  
+
+```bash
+anvi-summarize \
+    -c 08_ANVIO/CONTIGS.db \
+    -p 08_ANVIO/SAMPLES-MERGED/PROFILE.db \
+    --collection-name Final \
+    --output-dir 08_ANVIO/SUMMARY_Final_with_mcrA_hmm
+```
+
+Can you find the mcrA gene in your MAGs?  
+If you look at the `GTDB-Tk` results, can we say to which lineage the `mcrA` MAG(s) belong(s)?  
+Is this metabolic capability already known for this lineage?  
+Time to start writing the manuscript!! :)

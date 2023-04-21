@@ -580,11 +580,11 @@ anvi-summarize \
 Now we have obtained some bins that we think could represent genomes present in our samples. Next steps are QC and taxonomic annotation of our genomes.  
 
 We will use a program called [checkM2](https://github.com/chklovski/CheckM2) to get more precise estimates of the completeness and redundancy of these genomes.  
-For taxonomic annotation we will use Genome Taxonomy Database ([GTDB](https://gtdb.ecogenomic.org/)) and a tool called [GTDB-Tk](https://ecogenomics.github.io/GTDBTk/installing/index.html#installing-gtdbtk-reference-data) for this.
+For taxonomic annotation we will use Genome Taxonomy Database ([GTDB](https://gtdb.ecogenomic.org/)) and a tool called [GTDB-Tk](https://ecogenomics.github.io/GTDBTk/installing/index.html#installing-gtdbtk-reference-data).
 
-But before we can do these steps, we need to copy the most interesting genomes to a separate folder.  
+But before we can do these steps, we should copy the most interesting genomes to a separate folder (to save time we only do this for few genomes)  .  
 
-First make text file called: `Final_genomes.txt` in the `08_ANVIO` folder that has the names of the bins that you want to work further (max. 10).  
+First make text file called: `Final_genomes.txt` in the `08_ANVIO` folder that has the names of the bins that you want to work further.  
 
 Our file would look like this:
 
@@ -596,7 +596,7 @@ ubuntu_Bin_00004
 ubuntu_Bin_00005
 ```
 
-Then we'll make a new folder for these genomes and copy each genome fasta file there from the anvi'o summary folder (`SUMMARY_Final`).  
+Then we'll make a new folder for these genomes and copy the fasta files for each of these genomes there from the anvi'o summary folder (`SUMMARY_Final`).  
 
 ```bash 
 mkdir 09_GENOMES

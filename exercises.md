@@ -610,6 +610,8 @@ Now you should have one fasta file per genome you selected in folder `09_GENOMES
 ### checkM2
 
 ```bash
+conda activate checkm2
+
 checkm2 predict \
       --input 09_GENOMES \
       --output-directory 09_GENOMES/checkM2 \
@@ -620,6 +622,8 @@ checkm2 predict \
 ### GTDB-tk
 
 ```bash 
+conda activate gtdbtk
+
 gtdbtk classify_wf \
       --genome_dir 09_GENOMES \
       --out_dir 09_GENOMES/GTDB \

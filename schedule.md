@@ -36,7 +36,6 @@
 |Morning|Read-based taxonomic profiling (cont.) |[Slides](Lectures/read-based-taxonomic-profiling.pdf) / [Hands-on](exercises.md#read-based-taxonomic-profiling)|
 |Morning|Genome-resolved metagenomics with anvi'o |[Slides](Lectures/genome-resolved-metagenomics.pdf) / [Hands-on](exercises.md#genome-resolved-metagenomics-with-anvio)|
 |Afternoon|Genome-resolved metagenomics with anvi'o (cont.) |[Slides](Lectures/genome-resolved-metagenomics.pdf) / [Hands-on](exercises.md#genome-resolved-metagenomics-with-anvio)|
-|Afternoon|Read-based taxonomic profiling (cont.)           |[Slides](Lectures/read-based-taxonomic-profiling.pdf) / [Hands-on](exercises.md#read-based-taxonomic-profiling)       |
 
 ## Thursday 20.04.23
 
@@ -44,14 +43,14 @@
 |---------|--------|----|
 |Morning  |Questions from the previous day||
 |Morning|Genome-resolved metagenomics with anvi'o (cont.) |[Slides](Lectures/genome-resolved-metagenomics.pdf) / [Hands-on](exercises.md#genome-resolved-metagenomics-with-anvio)|
-|Afternoon|Read-based taxonomic profiling            |[Slides](Lectures/read-based-taxonomic-profiling.pdf) / [Hands-on](exercises.md#read-based-taxonomic-profiling)       |
+|Afternoon|Read-based taxonomic profiling (cont.)            |[Slides](Lectures/read-based-taxonomic-profiling.pdf) / [Hands-on](exercises.md#read-based-taxonomic-profiling)       |
 
 
 ## Friday 21.04.23
 
 |Time     |Activity|Link|
 |---------|--------|----|
-|Morning|Read-based taxonomic profiling            |[Slides](Lectures/read-based-taxonomic-profiling.pdf) / [Hands-on](exercises.md#read-based-taxonomic-profiling)       |
+|Morning|Read-based taxonomic profiling (cont.)            |[Slides](Lectures/read-based-taxonomic-profiling.pdf) / [Hands-on](exercises.md#read-based-taxonomic-profiling)       |
 |Morning|Quality control and taxonomic annotation of metagenome-assembled genomes (MAGs) |[Hands-on](exercises.md#quality-control-and-taxonomic-annotation-of-metagenome-assembled-genomes-mags) |
 |Morning| Automatic binning with SemiBin2| [Hands-on](exercises.md#automatic-binning-with-semibin2)|
 |Afternoon |Link to share information about your MAGs |[Flinga](https://flinga.fi/s/F6THBW8)|

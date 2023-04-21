@@ -57,5 +57,3 @@
 |Afternoon |Link to share information aabout your MAGs |[Flinga](https://flinga.fi/s/F6THBW8)|
 |Afternoon | Targeted functional ananlysis of MAGs | [Hands-on](exercises.md) |
 |Afternoon | Open questions and discussion|||
-
-|Afternoon|||

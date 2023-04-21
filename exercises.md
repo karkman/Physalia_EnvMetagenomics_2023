@@ -584,7 +584,7 @@ For taxonomic annotation we will use Genome Taxonomy Database ([GTDB](https://gt
 
 But before we can do these steps, we should copy the most interesting genomes to a separate folder (to save time we only do this for few genomes)  .  
 
-First make text file called: `Final_genomes.txt` in the `08_ANVIO` folder that has the names of the bins that you want to work further.  
+First make text file called: `Final_genomes.txt` in the `08_ANVIO` folder that has the names of the bins that you want to work with.  
 
 Our file would look like this:
 
